@@ -2,31 +2,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    
+
     <head th:replace="~{layout/plantilla :: head}">
         <title>Patitas Solidarias</title>
         <meta charset="UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-        
-        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
+
         <div class="maincontainer">
             <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
-            
-            <div class="rightside">
-                <div class="about-section">
-                    <h1>Acerca de Nosotros</h1>
-                    <p>Some text about who we are and what we do.</p>
-                    <p>Resize the browser window to see that this page is responsive by the way.</p>
+
+
+            <div style="background-image: url('img/fondoPantalla.avif');background-size: cover; background-position: center; background-attachment: fixed; color: white;">
+                <!-- Navbar (optional) -->
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand">Castración de Animales</a>
+                    </div>
+                </nav>
+
+                <!-- Main Content -->
+                <div class="container mt-5">
+                    <div style="background-color: rgba(0, 0, 0, 0.6);padding: 30px;border-radius: 10px;">
+                        <h1 class="text-center">¿Qué es la Castración de Animales?</h1>
+                        <p>
+                            La castración es un procedimiento quirúrgico que consiste en la extirpación de los órganos reproductores de los animales. En los machos, implica la eliminación de los testículos, y en las hembras, la extracción de los ovarios y, en ocasiones, el útero. Este procedimiento tiene beneficios tanto para la salud del animal como para el control de la población animal.
+                        </p>
+                        <h2>Beneficios de la Castración</h2>
+                        <ul>
+                            <li>Prevención de enfermedades reproductivas.</li>
+                            <li>Reducción de la agresividad y el comportamiento territorial.</li>
+                            <li>Evitar embarazos no deseados y controlar la población animal.</li>
+                            <li>Menor riesgo de ciertas enfermedades, como el cáncer de testículos o ovarios.</li>
+                        </ul>
+                        <h2>Consideraciones Importantes</h2>
+                        <p>
+                            Antes de decidir realizar la castración, es importante consultar a un veterinario para evaluar la salud general del animal y determinar el momento más adecuado para realizar la operación.
+                        </p>
+                        <p><strong>Nota:</strong> La castración es un procedimiento seguro si se realiza bajo la supervisión de profesionales veterinarios calificados.
+                        </p>
+                    </div>
                 </div>
+
             </div>
+
         </div>
-            
+
     </body>
 </html>
+

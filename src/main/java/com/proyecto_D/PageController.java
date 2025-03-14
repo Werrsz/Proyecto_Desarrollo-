@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class PageController {
+    @GetMapping("/")
+    public String homePage() {
+        return "about"; // This should match about.html in src/main/resources/templates
+    }
+    
     @GetMapping("/about")
     public String aboutPage() {
         return "about"; // This should match about.html in src/main/resources/templates

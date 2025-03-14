@@ -2,31 +2,88 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    
+
     <head th:replace="~{layout/plantilla :: head}">
         <title>Patitas Solidarias</title>
         <meta charset="UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-        
-        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
+
         <div class="maincontainer">
             <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
-            
-            <div class="rightside">
-                <div class="about-section">
-                    <h1>Acerca de Nosotros</h1>
-                    <p>Some text about who we are and what we do.</p>
-                    <p>Resize the browser window to see that this page is responsive by the way.</p>
+            <!-- Navbar (optional) -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand">Inscripciones</a>
                 </div>
+            </nav>
+
+            <div class="bg-light">
+
+                <div class="container mt-5">
+                    <h1 class="text-center text-primary">¡Únete como Voluntario! 🐾</h1>
+                    <p class="text-center text-muted">Tu ayuda puede marcar la diferencia en la vida de muchas mascotas. En <strong>Patitas Solidarias</strong>, buscamos personas apasionadas que quieran contribuir con su tiempo y esfuerzo al rescate y bienestar de los animales en situación de abandono. ¡Sé parte de nuestro equipo y ayúdanos a salvar vidas! 💖</p>
+
+                    <!-- Formulario -->
+                    <div class="card p-4 shadow-sm mt-4">
+                        <h3 class="text-center">Formulario de Postulación</h3>
+                        <form id="volunteerForm">
+                            <div class="mb-3">
+                                <label class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" required=""/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" id="name" required=""/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">País</label>
+                                <input type="text" class="form-control" id="country" required=""/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Cuéntanos por qué quieres ser voluntario" required=""></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success w-100">Postularme</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Modal de Confirmación -->
+                <div class="modal fade" id="confirmationModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Solicitud Enviada</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Su solicitud ha sido enviada, ¡Gracias por su interés en ser voluntario! 🐶🐱💖</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    document.getElementById("volunteerForm").addEventListener("submit", function (event) {
+                        event.preventDefault();
+
+                        // Mostrar modal de confirmación
+                        let modal = new bootstrap.Modal(document.getElementById("confirmationModal"));
+                        modal.show();
+
+                        // Limpiar el formulario
+                        document.getElementById("volunteerForm").reset();
+                    });
+                </script>
+
             </div>
         </div>
-            
+
     </body>
 </html>
+
+
+

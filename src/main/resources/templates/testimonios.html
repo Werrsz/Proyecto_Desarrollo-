@@ -2,31 +2,99 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    
+
     <head th:replace="~{layout/plantilla :: head}">
         <title>Patitas Solidarias</title>
         <meta charset="UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-        
-        
-        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
+
         <div class="maincontainer">
             <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
-            
-            <div class="rightside">
-                <div class="about-section">
-                    <h1>Testimonios</h1>
-                    <p>Some text about who we are and what we do.</p>
+            <!-- Navbar (optional) -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand">Testimonios</a>
                 </div>
+            </nav>
+
+            <div class="bg-light">
+
+                <div class="container mt-4">
+                    <h2 class="text-center mb-4">Testimonios</h2>
+
+                    <!-- Formulario -->
+                    <div class="card p-4 shadow-sm mb-4">
+                        <form id="feedbackForm">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Descripción</label>
+                                    <textarea id="description" class="form-control" name="DescripcionTestimonio" rows="5" cols="10" required=""></textarea>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="donorEmail" required=""/>
+                                </div>
+
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary w-100">Registrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Donaciones -->
+                    <h3 class="mb-3">Testimonios Registrados</h3>
+                    <ul class="list-group" id="feedbackList">
+                        <!-- Dynamic Items will be added here -->
+                    </ul>
+                </div>
+
+              
             </div>
         </div>
-            
+
+        <script>
+            document.getElementById("feedbackForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let description = document.getElementById("description").value;
+                let donorEmail = document.getElementById("donorEmail").value;
+                let date = new Date().toLocaleDateString();
+
+                let list = document.getElementById("feedbackList");
+                let listItem = document.createElement("li");
+                listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+                listItem.innerHTML = `
+                                    <div>
+                                        <p class="mb-1"><strong>Fecha:</strong> ${date}</p>
+                                        <p class="mb-1"><strong>Email:</strong> ${donorEmail}</p>
+                                        <p class="mb-1"><strong>Descripción:</strong> ${description}</p>
+                                    </div>
+                                `;
+                list.appendChild(listItem);
+
+                // Reset form
+                document.getElementById("feedbackForm").reset();
+            });
+
+            // Insertar una necesidad default
+            let description = "Me encantó la página, transmite mucha calidez y amor por los animales. La información está clara y bien organizada, lo que facilita el proceso de adopción. Solo agregaría algunos filtros de búsqueda y testimonios para hacerla aún más atractiva. ¡Gran trabajo! 🐾💖"
+            let donorEmail = "valeriavargas@gmail.com";
+            let date = new Date().toLocaleDateString();
+
+            let list = document.getElementById("feedbackList");
+            let listItem = document.createElement("li");
+            listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+            listItem.innerHTML = `
+                                    <div>
+                                        <p class="mb-1"><strong>Fecha:</strong> ${date}</p>
+                                        <p class="mb-1"><strong>Email:</strong> ${donorEmail}</p>
+                                        <p class="mb-1"><strong>Descripción:</strong> ${description}</p>
+                                    </div>
+                                `;
+            list.appendChild(listItem);
+        </script>
     </body>
 </html>
+

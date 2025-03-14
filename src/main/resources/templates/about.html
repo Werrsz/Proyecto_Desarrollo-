@@ -2,31 +2,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    
+
     <head th:replace="~{layout/plantilla :: head}">
         <title>Patitas Solidarias</title>
         <meta charset="UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-        
-        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
+
         <div class="maincontainer">
             <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
-            
-            <div class="rightside">
-                <div class="about-section">
-                    <h1>Acerca de Nosotros</h1>
-                    <p>Some text about who we are and what we do.</p>
-                    <p>Resize the browser window to see that this page is responsive by the way.</p>
+            <!-- Navbar (optional) -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand"></a>
                 </div>
+            </nav>
+
+            <div class="bg-light">
+
+                <div class="container mt-5 text-center">
+                    <h1 class="mb-3">Patitas Solidarias</h1>
+                    <p class="text-muted">¡Un Compromiso con los Animales y la Solidaridad!</p>
+
+                    <!-- Imagen -->
+                    <img src="img/fondoPantalla.avif" alt="Mascotas en adopción" class="img-fluid rounded shadow-lg mb-4"/>
+                    <!-- Secciones -->
+                    <div class="card p-4 shadow-sm">
+                        <h3 class="text-primary">💙 ¿Qué hacemos?</h3>
+                        <p>En Patitas Solidarias, creemos en un mundo donde cada mascota tenga un hogar lleno de amor y cuidados. Nuestra organización se dedica a mejorar la calidad de vida de los animales en situación de calle o abandono, brindándoles atención, refugio y la oportunidad de ser adoptados por familias responsables.</p>
+                        <h4 class="text-primary">Rescate y rehabilitación 🏡</h4>
+                        <p>Rescatamos animales en situaciones de vulnerabilidad, les brindamos atención veterinaria, alimentación y un espacio seguro hasta que encuentren un hogar definitivo.</p>
+                        <h4 class="text-primary">Donaciones y ayuda comunitaria 🎁</h4>
+                        <p>Contamos con el apoyo de personas solidarias que contribuyen con alimentos, medicinas, juguetes y donaciones económicas para cubrir las necesidades de nuestras mascotas rescatadas.</p>
+                        <h4 class="text-primary">Fomentamos la adopción responsable 🐶🐱</h4>
+                        <p>Organizamos campañas de adopción para que cada peludo encuentre la familia que se merece, asegurándonos de que los adoptantes cumplan con los requisitos necesarios para garantizar su bienestar.</p>
+                    </div>
+
+                    <div class="card p-4 shadow-sm mt-3">    
+                        <h3 class="text-danger">¡Tú también puedes ayudar!</h3>
+                        <p>Si quieres hacer la diferencia en la vida de un animal, puedes colaborar con donaciones, voluntariado o simplemente difundiendo nuestro mensaje.</p>
+                        <p>📧 Correo: <a href="mailto:adopciones@patitassolidarias.com">adopciones@patitassolidarias.com</a></p>
+                        <p>📞 Teléfono: +506 5241 7890</p>
+                        <p>📍 Dirección: Calle 123, Cartago, Costa Rica</p>
+                    </div>
+
+                </div>
+
             </div>
         </div>
-            
+
     </body>
 </html>
+
+
+
