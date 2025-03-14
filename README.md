@@ -6,7 +6,7 @@ Patitas Solidarias es una página web dedicada a la adopción de mascotas. Manej
 
 ## Integrantes: 
   - Valeria Vargas Beita
-  - Werner
+  - Werner Trujillo Soza
 
 ## Funcionalidades Implementadas
 
