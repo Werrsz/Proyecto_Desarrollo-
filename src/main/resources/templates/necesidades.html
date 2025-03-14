@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Patitas Solidarias</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <div class="maincontainer">
+            <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
+
+
+            <div class="bg-light">
+
+                <div class="container mt-4">
+                    <h2 class="text-center mb-4">Registro de Donaciones</h2>
+
+                    <!-- Formulario -->
+                    <div class="card p-4 shadow-sm mb-4">
+                        <form id="donationForm">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Descripción</label>
+                                    <input type="text" class="form-control" id="description" required=""/>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Tipo</label>
+                                    <select class="form-select" id="type" required="">
+                                        <option value="">Seleccione...</option>
+                                        <option value="Alimento">Alimento</option>
+                                        <option value="Medicina">Medicina</option>
+                                        <option value="Dinero">Dinero</option>
+                                        <option value="Juguetes">Juguetes</option>
+                                        <option value="Otros">Otros</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Cantidad</label>
+                                    <input type="number" class="form-control" id="quantity" required="" min="1"/>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary w-100">Registrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Donaciones -->
+                    <h3 class="mb-3">Donaciones Registradas</h3>
+                    <ul class="list-group" id="donationList">
+                        <!-- Dynamic Items will be added here -->
+                    </ul>
+                </div>
+
+                <!-- Modal for Donation -->
+                <div class="modal fade" id="donationModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Realizar Donación</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="donorForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="donorName" required=""/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Teléfono</label>
+                                        <input type="text" class="form-control" id="donorPhone" required=""/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Correo Electrónico</label>
+                                        <input type="email" class="form-control" id="donorEmail" required=""/>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">Confirmar Donación</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("donationForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let description = document.getElementById("description").value;
+                let type = document.getElementById("type").value;
+                let quantity = document.getElementById("quantity").value;
+                let date = new Date().toLocaleDateString();
+
+                let list = document.getElementById("donationList");
+                let listItem = document.createElement("li");
+                listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+                listItem.innerHTML = `
+                                    <div>
+                                        <p class="mb-1"><strong>Fecha:</strong> ${date}</p>
+                                        <p class="mb-1"><strong>Descripción:</strong> ${description}</p>
+                                        <p class="mb-1"><strong>Tipo:</strong> ${type}</p>
+                                        <p class="mb-0"><strong>Cantidad:</strong> ${quantity}</p>
+                                    </div>
+                                    <button class="btn btn-warning btn-sm" onclick="openDonationModal()">
+                                        <i class="fas fa-hand-holding-heart"></i> Donar
+                                    </button>
+                                `;
+                list.appendChild(listItem);
+
+                // Reset form
+                document.getElementById("donationForm").reset();
+            });
+
+            function openDonationModal() {
+                let modal = new bootstrap.Modal(document.getElementById("donationModal"));
+                modal.show();
+            }
+
+            document.getElementById("donorForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                alert("¡Gracias por tu donación!");
+                let modal = bootstrap.Modal.getInstance(document.getElementById("donationModal"));
+                modal.hide();
+                document.getElementById("donorForm").reset();
+            });
+            
+            // Insertar una necesidad default
+            let description = "Se necesita alimento para perros"
+            let type = "Alimento";
+            let quantity = 5;
+            let date = new Date().toLocaleDateString();
+
+            let list = document.getElementById("donationList");
+            let listItem = document.createElement("li");
+            listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+            listItem.innerHTML = `
+                                    <div>
+                                        <p class="mb-1"><strong>Fecha:</strong> ${date}</p>
+                                        <p class="mb-1"><strong>Descripción:</strong> ${description}</p>
+                                        <p class="mb-1"><strong>Tipo:</strong> ${type}</p>
+                                        <p class="mb-0"><strong>Cantidad:</strong> ${quantity}</p>
+                                    </div>
+                                    <button class="btn btn-warning btn-sm" onclick="openDonationModal()">
+                                        <i class="fas fa-hand-holding-heart"></i> Donar
+                                    </button>
+                                `;
+            list.appendChild(listItem);
+        </script>
+    </body>
+</html>
+

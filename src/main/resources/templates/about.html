@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Patitas Solidarias</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        
+        <div class="maincontainer">
+            <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
+            
+            <div class="rightside">
+                <div class="about-section">
+                    <h1>Acerca de Nosotros</h1>
+                    <p>Some text about who we are and what we do.</p>
+                    <p>Resize the browser window to see that this page is responsive by the way.</p>
+                </div>
+            </div>
+        </div>
+            
+    </body>
+</html>

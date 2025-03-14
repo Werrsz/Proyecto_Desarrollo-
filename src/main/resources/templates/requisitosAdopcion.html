@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Patitas Solidarias</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <div class="maincontainer">
+            <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
+
+            <div class="bg-light">
+
+                <div class="container mt-5 text-center">
+                    <h1 class="mb-3">Adopción de Mascotas</h1>
+                    <p class="text-muted">¡Dale un hogar a una mascota que lo necesita!</p>
+
+                    <!-- Imagen -->
+                    <img src="img/fondoPantalla.avif" alt="Mascotas en adopción" class="img-fluid rounded shadow-lg mb-4"/>
+                        <!-- Secciones -->
+                        <div class="card p-4 shadow-sm">
+                            <h3 class="text-primary">Prerequisitos</h3>
+                            <p>- Ser mayor de edad.</p>
+                            <p>- Contar con un espacio adecuado para la mascota.</p>
+                            <p>- Comprometerse a brindarle alimentación y cuidados médicos.</p>
+                        </div>
+
+                        <div class="card p-4 shadow-sm mt-3">
+                            <h3 class="text-success">Consideraciones</h3>
+                            <p>- La adopción es un compromiso de por vida.</p>
+                            <p>- Algunas mascotas pueden requerir cuidados especiales.</p>
+                            <p>- Se recomienda realizar una visita previa antes de la adopción.</p>
+                        </div>
+
+                        <div class="card p-4 shadow-sm mt-3">
+                            <h3 class="text-danger">Contacto</h3>
+                            <p>📧 Correo: <a href="mailto:adopciones@patitassolidarias.com">adopciones@patitassolidarias.com</a></p>
+                            <p>📞 Teléfono: +506 5241 7890</p>
+                            <p>📍 Dirección: Calle 123, Cartago, Costa Rica</p>
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
+
