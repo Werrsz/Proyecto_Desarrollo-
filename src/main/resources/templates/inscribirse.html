@@ -11,7 +11,7 @@
 
         <div class="maincontainer">
             <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
-            <!-- Navbar (optional) -->
+            
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand">Inscripciones</a>
@@ -24,7 +24,7 @@
                     <h1 class="text-center text-primary">¡Únete como Voluntario! 🐾</h1>
                     <p class="text-center text-muted">Tu ayuda puede marcar la diferencia en la vida de muchas mascotas. En <strong>Patitas Solidarias</strong>, buscamos personas apasionadas que quieran contribuir con su tiempo y esfuerzo al rescate y bienestar de los animales en situación de abandono. ¡Sé parte de nuestro equipo y ayúdanos a salvar vidas! 💖</p>
 
-                    <!-- Formulario -->
+                  
                     <div class="card p-4 shadow-sm mt-4">
                         <h3 class="text-center">Formulario de Postulación</h3>
                         <form id="volunteerForm">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <!-- Modal de Confirmación -->
+              
                 <div class="modal fade" id="confirmationModal" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -70,11 +70,11 @@
                     document.getElementById("volunteerForm").addEventListener("submit", function (event) {
                         event.preventDefault();
 
-                        // Mostrar modal de confirmación
+                      
                         let modal = new bootstrap.Modal(document.getElementById("confirmationModal"));
                         modal.show();
 
-                        // Limpiar el formulario
+                   
                         document.getElementById("volunteerForm").reset();
                     });
                 </script>

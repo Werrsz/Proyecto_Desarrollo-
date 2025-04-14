@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Editar Mascota</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+    <div class="maincontainer">
+        <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
+
+  
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">Mascotas</a>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Editar Mascota</h2>
+
+            <form action="/actualizarMascota" method="POST">
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Código</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" value="P001" readonly="true"/>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="Max" required="true"/>
+                </div>
+                <div class="mb-3">
+                    <label for="tipoAnimal" class="form-label">Tipo de Animal</label>
+                    <select class="form-select" id="tipoAnimal" name="tipoAnimal" required="true">
+                        <option value="Dog" selected="true">Perro</option>
+                        <option value="Cat">Gato</option>
+                        <option value="Bird">Pájaro</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required="true">Friendly golden retriever.</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="edad" name="edad" value="3" required="true"/>
+                </div>
+                <button type="submit" class="btn btn-warning">Actualizar Mascota</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

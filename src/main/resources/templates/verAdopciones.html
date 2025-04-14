@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Patitas Solidarias - Mascotas Adoptadas</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+    <div class="maincontainer">
+        <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">Mascotas</a>
+            </div>
+        </nav>
+
+        <!-- Sección de mascotas adoptadas -->
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Mascotas Adoptadas 🏡🐶🐱</h2>
+            <div class="row">
+                <!-- Tarjeta 1 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="/images/luna.jpg" class="card-img-top" alt="Luna"/>
+                        <div class="card-body">
+                            <h5 class="card-title">Luna</h5>
+                            <p class="card-text">Luna encontró un hogar amoroso después de superar muchas dificultades. Ahora es feliz con su nueva familia.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="/images/max.jpg" class="card-img-top" alt="Max"/>
+                        <div class="card-body">
+                            <h5 class="card-title">Max</h5>
+                            <p class="card-text">Max era un cachorro callejero que ahora disfruta de una vida llena de amor y juegos con sus dueños.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="/images/mia.jpg" class="card-img-top" alt="Mia"/>
+                        <div class="card-body">
+                            <h5 class="card-title">Mia</h5>
+                            <p class="card-text">Después de ser rescatada, Mia encontró una familia que la adora y le brinda todo el cariño que merece.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

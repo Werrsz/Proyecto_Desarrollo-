@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Patitas Solidarias</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+    <div class="maincontainer">
+        <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
+
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">Mascotas</a>
+            </div>
+        </nav>
+
+    
+        <div class="bg-light">
+            <div class="container mt-5">
+                <h2 class="text-center mb-4">Historia de: Luna</h2>
+                <div class="card mx-auto" style="max-width: 800px;">
+                    <img src="/images/luna.jpg" class="card-img-top" alt="Luna, una perrita en adopción"/>
+                    <div class="card-body">
+                        <p class="card-text">
+                            En una fría noche de invierno, Luna temblaba en la acera de una calle solitaria. Su cuerpo delgado reflejaba el abandono,
+                            y sus ojos, llenos de tristeza, buscaban esperanza. Había sido dejada atrás por aquellos en quienes confiaba, obligada a
+                            sobrevivir sola en un mundo cruel.
+                        </p>
+                        <p class="card-text">
+                            Un día, exhausta y sin fuerzas, se acurrucó en la entrada de una tienda. Fue entonces cuando Julia, una joven voluntaria
+                            de un refugio, la vio. Con paciencia y amor, Luna fue llevada al refugio, donde poco a poco comenzó a recuperar la confianza.
+                        </p>
+                        <p class="card-text">
+                            Ahora, Luna espera encontrar una familia amorosa que le brinde un hogar para siempre. Su historia de resiliencia y amor
+                            incondicional merece un final feliz. 💕🐶
+                        </p>
+                        <div class="text-center">
+                            <a href="/adopciones" class="btn btn-primary">Adóptame</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

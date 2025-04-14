@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Citas de Grooming y Castraciones</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+
+    <div class="maincontainer">
+        <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">Mis Citas</a>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Mis Citas de Grooming y Castraciones</h2>
+
+       
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo de Servicio</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+         
+                    <tr>
+                        <td>10/04/2025</td>
+                        <td>Grooming</td>
+                        <td>Confirmada</td>
+                        <td>
+                            <a href="modificarCita" class="btn btn-warning btn-sm">Modificar</a>
+                            <a href="cancelarCita" class="btn btn-danger btn-sm">Cancelar</a>
+                        </td>
+                    </tr>
+
+        
+                    <tr>
+                        <td>15/04/2025</td>
+                        <td>Castración</td>
+                        <td>Pendiente</td>
+                        <td>
+                            <a href="modificarCita" class="btn btn-warning btn-sm">Modificar</a>
+                            <a href="cancelarCita" class="btn btn-danger btn-sm">Cancelar</a>
+                        </td>
+                    </tr>
+
+ 
+                    <tr>
+                        <td>20/04/2025</td>
+                        <td>Grooming</td>
+                        <td>Confirmada</td>
+                        <td>
+                            <a href="modificarCita" class="btn btn-warning btn-sm">Modificar</a>
+                            <a href="cancelarCita" class="btn btn-danger btn-sm">Cancelar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</body>
+</html>

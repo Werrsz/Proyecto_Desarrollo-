@@ -5,7 +5,7 @@
     <head th:fragment="head">
         <title>Patitas Solidarias</title>
         <link rel="icon" type="img" href="/fav/hippo-solid.svg"/>
-        
+
         <meta charset="UTF-8"/> 
         <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
         <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
@@ -15,9 +15,9 @@
 
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
         <link href="css/listaMascotas.css" rel="stylesheet" type="text/css"/>
-        
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-        
+
     </head>
     <body>
         <header th:fragment="header">
@@ -33,10 +33,14 @@
                                 <a class="nav-link dropdown-toggle" id="aboutDropdown">Información</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" th:href="@{/listaMascotas}">Mascotas</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/verAdopciones}">Mascotas Adoptadas</a></li>
+
                                     <li><a class="dropdown-item" th:href="@{/requisitosAdopcion}">Requisitos de Adopción</a></li>
                                     <li><a class="dropdown-item" th:href="@{/castraciones}">Info de Castraciones</a></li>
                                 </ul>
                             </li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/misCitas}">Mis Citas</a></li>
+
                             <li class="nav-item"><a class="nav-link" th:href="@{/necesidades}">Necesidades</a></li>
                             <li class="nav-item"><a class="nav-link" th:href="@{/inscribirse}">Voluntariado</a></li>
                             <li class="nav-item dropdown">

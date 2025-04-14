@@ -6,20 +6,26 @@
     <head th:replace="~{layout/plantilla :: head}">
         <title>Patitas Solidarias</title>
         <meta charset="UTF-8"/>
-
     </head>
     <body>
-
         <div class="maincontainer">
-            <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
-            <!-- Navbar (optional) -->
+            <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
+
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand">Mascotas</a>
                 </div>
             </nav>
-            <div class="bg-light">
 
+            <div class="container mt-3">
+                <div class="d-flex justify-content-between mb-4">
+                    <a href="agregarMascota" class="btn btn-success">Agregar Mascota</a>
+                    <a href="editarMascota" class="btn btn-warning">Editar Mascota</a>
+                    <a href="eliminarMascota" class="btn btn-danger">Eliminar Mascota</a>
+                </div>
+            </div>
+
+            <div class="bg-light">
                 <div class="container mt-5">
                     <h2 class="text-center mb-4">Lista de Mascotas</h2>
 
@@ -27,7 +33,7 @@
                         <!-- Pet Item 1 -->
                         <li class="list-group-item d-flex align-items-center liListaMascotas">
                             <div class="pet-icon me-3">
-                                <i class="fas fa-paw"></i> <!-- Pet icon -->
+                                <i class="fas fa-paw"></i>
                             </div>
                             <div>
                                 <p class="mb-1"><strong>Código:</strong> P001</p>
@@ -35,6 +41,8 @@
                                 <p class="mb-1"><strong>Tipo Animal:</strong> Dog</p>
                                 <p class="mb-1"><strong>Descripción:</strong> Friendly golden retriever.</p>
                                 <p class="mb-0"><strong>Edad:</strong> 3 years</p>
+                                <a href="historiaMascota" class="btn btn-outline-warning">Historia</a>
+                                <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
                             </div>
                         </li>
 
@@ -49,6 +57,8 @@
                                 <p class="mb-1"><strong>Tipo Animal:</strong> Cat</p>
                                 <p class="mb-1"><strong>Descripción:</strong> Playful tabby cat.</p>
                                 <p class="mb-0"><strong>Edad:</strong> 2 years</p>
+                                <a href="historiaMascota" class="btn btn-outline-warning">Historia</a>
+                                <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
                             </div>
                         </li>
 
@@ -63,13 +73,13 @@
                                 <p class="mb-1"><strong>Tipo Animal:</strong> Bird</p>
                                 <p class="mb-1"><strong>Descripción:</strong> Beautiful blue parrot.</p>
                                 <p class="mb-0"><strong>Edad:</strong> 1 year</p>
+                                <a href="historiaMascota" class="btn btn-outline-warning">Historia</a>
+                                <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
                             </div>
                         </li>
                     </ul>
                 </div>
-
             </div>
         </div>
-
     </body>
 </html>

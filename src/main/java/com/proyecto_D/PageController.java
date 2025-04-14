@@ -62,4 +62,37 @@ public class PageController {
     public String castracionesPage() {
         return "castraciones"; // This should match about.html in src/main/resources/templates
     }
+    
+    @GetMapping("/historiaMascota")
+    public String historiaMascotaPage() {
+        return "historiaMascota"; // This should match about.html in src/main/resources/templates
+    }
+
+    @GetMapping("/verAdopciones")
+    public String verAdopcionesPage() {
+        return "verAdopciones"; // This should match about.html in src/main/resources/templates
+    }
+    
+    @GetMapping("/castracionesLista")
+    public String castracionesListaPage(){
+        return "castracionesLista";
+    }
+    
+    @GetMapping("/agregarMascota")
+    public String agregarMascotaPage()
+    {
+        return "agregarMascota";
+    }
+    
+    @GetMapping("/editarMascota")
+    public String editarMascotaPage()
+    {
+        return "editarMascota";
+    }
+    
+    @GetMapping("/misCitas")
+    public String misCitasPage()
+    {
+        return "misCItas";
+    }
 }
