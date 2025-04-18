@@ -7,6 +7,7 @@
         <title>Patitas Solidarias</title>
         <meta charset="UTF-8"/>
     </head>
+
     <body>
         <div class="maincontainer">
             <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
@@ -17,69 +18,48 @@
                 </div>
             </nav>
 
-            <div class="container mt-3">
-                <div class="d-flex justify-content-between mb-4">
-                    <a href="agregarMascota" class="btn btn-success">Agregar Mascota</a>
-                    <a href="editarMascota" class="btn btn-warning">Editar Mascota</a>
-                    <a href="eliminarMascota" class="btn btn-danger">Eliminar Mascota</a>
-                </div>
-            </div>
-
             <div class="bg-light">
+
                 <div class="container mt-5">
+                    <div class="d-flex justify-content-center mb-4">
+                        <a href="agregarMascota" class="btn btn-success">Agregar Mascota</a>
+                    </div>
                     <h2 class="text-center mb-4">Lista de Mascotas</h2>
 
-                    <ul class="list-group">
+                    <ul class="list-group" th:if="${mascotas != null and !mascotas.empty}">
                         <!-- Pet Item 1 -->
-                        <li class="list-group-item d-flex align-items-center liListaMascotas">
+                        <li class="list-group-item d-flex align-items-center liListaMascotas" th:each="mascota : ${mascotas}">
                             <div class="pet-icon me-3">
                                 <i class="fas fa-paw"></i>
                             </div>
                             <div>
-                                <p class="mb-1"><strong>Código:</strong> P001</p>
-                                <p class="mb-1"><strong>Nombre:</strong> Max</p>
-                                <p class="mb-1"><strong>Tipo Animal:</strong> Dog</p>
-                                <p class="mb-1"><strong>Descripción:</strong> Friendly golden retriever.</p>
-                                <p class="mb-0"><strong>Edad:</strong> 3 years</p>
-                                <a href="historiaMascota" class="btn btn-outline-warning">Historia</a>
+                                <p class="mb-1"><strong>Código:</strong> [[${mascota.id_mascota}]]</p>
+                                <p class="mb-1"><strong>Nombre:</strong> [[${mascota.nombre}]]</p>
+                                <p class="mb-1"><strong>Tipo Animal:</strong> [[${mascota.tipo_animal}]]</p>
+                                <p class="mb-1"><strong>Descripción:</strong> [[${mascota.descripcion}]]</p>
+                                <p class="mb-0"><strong>Edad:</strong> [[${mascota.edad}]]</p>
+                                <p class="mb-0"><strong>Estado</strong> [[${mascota.estado}]]</p>
+                                <a href="historiaMascota" class="btn btn-outline-warning">Adóptame</a>
                                 <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
                             </div>
-                        </li>
-
-                        <!-- Pet Item 2 -->
-                        <li class="list-group-item d-flex align-items-center liListaMascotas">
-                            <div class="pet-icon me-3">
-                                <i class="fas fa-cat"></i>
-                            </div>
-                            <div>
-                                <p class="mb-1"><strong>Código:</strong> P002</p>
-                                <p class="mb-1"><strong>Nombre:</strong> Whiskers</p>
-                                <p class="mb-1"><strong>Tipo Animal:</strong> Cat</p>
-                                <p class="mb-1"><strong>Descripción:</strong> Playful tabby cat.</p>
-                                <p class="mb-0"><strong>Edad:</strong> 2 years</p>
-                                <a href="historiaMascota" class="btn btn-outline-warning">Historia</a>
-                                <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
-                            </div>
-                        </li>
-
-                        <!-- Pet Item 3 -->
-                        <li class="list-group-item d-flex align-items-center liListaMascotas">
-                            <div class="pet-icon me-3">
-                                <i class="fas fa-dove"></i>
-                            </div>
-                            <div>
-                                <p class="mb-1"><strong>Código:</strong> P003</p>
-                                <p class="mb-1"><strong>Nombre:</strong> Blue</p>
-                                <p class="mb-1"><strong>Tipo Animal:</strong> Bird</p>
-                                <p class="mb-1"><strong>Descripción:</strong> Beautiful blue parrot.</p>
-                                <p class="mb-0"><strong>Edad:</strong> 1 year</p>
-                                <a href="historiaMascota" class="btn btn-outline-warning">Historia</a>
-                                <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
+                            <!-- Buttons at the right side -->
+                            <div class="action-buttons">
+                                <a th:href="@{/editarMascota/{id}(id=${mascota.id_mascota})}" class="btn btn-sm btn-edit" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a th:href="@{/eliminarMascota/{id}(id=${mascota.id_mascota})}" class="btn btn-sm btn-delete" title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </div>
                         </li>
                     </ul>
+
+                    <div class="text-center p-2" th:if="${mascotas == null or mascotas.empty}">
+                        <span>No Hay Mascotas</span>
+                    </div>
                 </div>
             </div>
+
         </div>
     </body>
 </html>

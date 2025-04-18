@@ -3,49 +3,49 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head th:replace="~{layout/plantilla :: head}">
-    <title>Agregar Mascota</title>
-    <meta charset="UTF-8"/>
-</head>
-<body>
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Agregar Mascota</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
 
-    <div class="maincontainer">
-        <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
+        <div class="maincontainer">
+            <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand">Mascotas</a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand">Mascotas</a>
+                </div>
+            </nav>
+
+            <div class="container mt-5">
+                <h2 class="text-center mb-4">Agregar Nueva Mascota</h2>
+
+                <form action="guardarMascota" th:object="${mascota}" method="POST">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required="true"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipoAnimal" class="form-label">Tipo de Animal</label>
+                        <select class="form-select" id="tipo_animal" name="tipo_animal" required="true">
+                            <option value="Perro">Perro</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required="true"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad" name="edad" required="true"/>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar Mascota</button>
+                </form>
             </div>
-        </nav>
-
-        <div class="container mt-5">
-            <h2 class="text-center mb-4">Agregar Nueva Mascota</h2>
-
-            <form action="/guardarMascota" method="POST">
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required="true"/>
-                </div>
-                <div class="mb-3">
-                    <label for="tipoAnimal" class="form-label">Tipo de Animal</label>
-                    <select class="form-select" id="tipoAnimal" name="tipoAnimal" required="true">
-                        <option value="Dog">Perro</option>
-                        <option value="Cat">Gato</option>
-                        <option value="Bird">Pájaro</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required="true"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="edad" class="form-label">Edad</label>
-                    <input type="number" class="form-control" id="edad" name="edad" required="true"/>
-                </div>
-                <button type="submit" class="btn btn-success">Guardar Mascota</button>
-            </form>
         </div>
-    </div>
 
-</body>
+    </body>
 </html>

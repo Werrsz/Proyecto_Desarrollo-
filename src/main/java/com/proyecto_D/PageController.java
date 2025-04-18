@@ -23,10 +23,10 @@ public class PageController {
         return "about"; // This should match about.html in src/main/resources/templates
     }
     
-    @GetMapping("/listaMascotas")
-    public String listaMascotasPage() {
-        return "listaMascotas"; // This should match about.html in src/main/resources/templates
-    }
+//    @GetMapping("/listaMascotas")
+//    public String listaMascotasPage() {
+//        return "listaMascotas"; // This should match about.html in src/main/resources/templates
+//    }
     
     @GetMapping("/necesidades")
     public String necesidadesPage() {
@@ -84,15 +84,17 @@ public class PageController {
         return "agregarMascota";
     }
     
+    /*
     @GetMapping("/editarMascota")
     public String editarMascotaPage()
     {
         return "editarMascota";
     }
+    */
     
     @GetMapping("/misCitas")
     public String misCitasPage()
     {
-        return "misCItas";
+        return "misCitas";
     }
 }
