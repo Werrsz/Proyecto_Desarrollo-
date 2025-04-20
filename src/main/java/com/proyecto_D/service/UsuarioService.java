@@ -12,18 +12,34 @@ public class UsuarioService {
 //se incorpora rolService porque cuando se crea un usuario.. tambien se le crea un rool
     @Autowired
     private UsuarioRepository usuarioRepository;
-    //@Autowired
-    //private RolRepository rolRepository;
-
+    
+    @Transactional
+    public void save(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
+    
+    @Transactional(readOnly = true)
+    public Usuario findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+    
+    @Transactional(readOnly = true)
+    public Usuario findByEmailAndPassword(String email, String password) {
+        return usuarioRepository.findByEmailAndPassword(email, password);
+    }
+    
+    @Transactional(readOnly = true)
+    public Usuario getUsuario(Usuario usuario) {
+        return usuarioRepository.findById(usuario.getId_usuario()).orElse(null);
+    }
+    
+    /*
     @Transactional(readOnly = true)
     public List<Usuario> getUsuarios() {
         return usuarioRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
-    public Usuario getUsuario(Usuario usuario) {
-        return usuarioRepository.findById(usuario.getIdUsuario()).orElse(null);
-    }
+    
 
     @Transactional(readOnly = true)
     public Usuario getUsuarioPorUsername(String username) {
@@ -60,4 +76,5 @@ public class UsuarioService {
     public void delete(Usuario usuario) {
         usuarioRepository.delete(usuario);
     }
+    */
 }

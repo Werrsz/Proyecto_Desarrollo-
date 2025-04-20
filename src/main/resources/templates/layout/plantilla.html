@@ -32,17 +32,17 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="aboutDropdown">Información</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" th:href="@{/listaMascotas}">Mascotas</a></li>
+                                    <li><a class="dropdown-item" th:if="${nombre != null and correo != null}" th:href="@{/listaMascotas}">Mascotas</a></li>
                                     <li><a class="dropdown-item" th:href="@{/verAdopciones}">Mascotas Adoptadas</a></li>
 
                                     <li><a class="dropdown-item" th:href="@{/requisitosAdopcion}">Requisitos de Adopción</a></li>
                                     <li><a class="dropdown-item" th:href="@{/castraciones}">Info de Castraciones</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" th:href="@{/misCitas}">Mis Citas</a></li>
+                            <li class="nav-item"><a class="nav-link" th:if="${nombre != null and correo != null}" th:href="@{/misCitas}">Mis Citas</a></li>
 
-                            <li class="nav-item"><a class="nav-link" th:href="@{/necesidades}">Necesidades</a></li>
-                            <li class="nav-item"><a class="nav-link" th:href="@{/inscribirse}">Voluntariado</a></li>
+                            <li class="nav-item"><a class="nav-link" th:if="${nombre != null and correo != null}" th:href="@{/necesidades}">Necesidades</a></li>
+                            <li class="nav-item"><a class="nav-link" th:if="${nombre != null and correo != null}" th:href="@{/inscribirse}">Voluntariado</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="aboutDropdown">Acerca De</a>
                                 <ul class="dropdown-menu">
@@ -50,7 +50,8 @@
                                     <li><a class="dropdown-item" th:href="@{/about}">Sobre Nosotros</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="btn btn-success text-white" th:href="@{/login}">Iniciar sesión</a></li>
+                            <li class="nav-item"><a class="btn btn-success text-white" th:if="${nombre == null and correo == null}" th:href="@{/login}">Iniciar sesión</a></li>
+                            <li class="nav-item"><a class="btn btn-warning text-white" th:if="${nombre != null and correo != null}" th:href="@{/logout}">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>

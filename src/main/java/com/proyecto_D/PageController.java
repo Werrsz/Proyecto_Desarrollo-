@@ -4,7 +4,9 @@
  */
 package com.proyecto_D;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -14,7 +16,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
     @GetMapping("/")
-    public String homePage() {
+    public String homePage(Model model, HttpSession session) {
+        String nombre = (String) session.getAttribute("nombre");
+        String correo = (String) session.getAttribute("correo");
+        
+        // false = 0 and 0 means Basic access
+        boolean tipo_acceso = false;
+                
+        if(session.getAttribute("tipo_acceso") != null){
+            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+        }
+        
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("correo", correo);
+        model.addAttribute("tipo_acceso", tipo_acceso);
+        
         return "about"; // This should match about.html in src/main/resources/templates
     }
     
@@ -38,6 +54,15 @@ public class PageController {
         return "login"; // This should match about.html in src/main/resources/templates
     }
     
+    @GetMapping("/logout")
+    public String logoutPage(HttpSession session) {
+        session.removeAttribute("nombre");
+        session.removeAttribute("correo");
+        session.removeAttribute("tipo_acceso");
+        
+        return "about"; // This should match about.html in src/main/resources/templates
+    }
+    
     @GetMapping("/registro")
     public String registroPage() {
         return "registro"; // This should match about.html in src/main/resources/templates
@@ -49,7 +74,21 @@ public class PageController {
     }
     
     @GetMapping("/testimonios")
-    public String testimoniosPage() {
+    public String testimoniosPage(Model model, HttpSession session) {
+        String nombre = (String) session.getAttribute("nombre");
+        String correo = (String) session.getAttribute("correo");
+        
+        // false = 0 and 0 means Basic access
+        boolean tipo_acceso = false;
+                
+        if(session.getAttribute("tipo_acceso") != null){
+            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+        }
+        
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("correo", correo);
+        model.addAttribute("tipo_acceso", tipo_acceso);
+        
         return "testimonios"; // This should match about.html in src/main/resources/templates
     }
     

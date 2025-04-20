@@ -14,65 +14,18 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Long idUsuario;
-    private String username;
-    private String password;
-    private String nombre;
-    private String apellidos;
+    private Long id_usuario;
     private String correo;
-    private String telefono;
-    private String rutaImagen;
-    private String Activo;
-//    @OneToMany
-//    @JoinColumn(name="id_usuario")
-//    private List<Rol> roles;
+    private boolean tipo_acceso;
+    private String nombre;
+    private String contrasena;
 
-    public String getActivo() {
-        return Activo;
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
-    public void setActivo(String Activo) {
-        this.Activo = Activo;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getCorreo() {
@@ -83,28 +36,27 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public boolean getTipo_acceso() {
+        return tipo_acceso;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTipo_acceso(boolean tipo_acceso) {
+        this.tipo_acceso = tipo_acceso;
     }
 
-    public String getRutaImagen() {
-        return rutaImagen;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-//    public List<Rol> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Rol> roles) {
-//        this.roles = roles;
-//    }
-    
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }
