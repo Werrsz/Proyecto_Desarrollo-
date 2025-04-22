@@ -39,15 +39,15 @@
                                 <p class="mb-1"><strong>Descripción:</strong> [[${mascota.descripcion}]]</p>
                                 <p class="mb-0"><strong>Edad:</strong> [[${mascota.edad}]]</p>
                                 <p class="mb-0"><strong>Estado</strong> [[${mascota.estado}]]</p>
-                                <a href="historiaMascota" class="btn btn-outline-warning">Adóptame</a>
+                                <a href="historiaMascota" class="btn btn-outline-warning" th:if="${nombre != null and correo != null and !tipo_acceso}" >Adóptame</a>
                                 <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
                             </div>
                             <!-- Buttons at the right side -->
                             <div class="action-buttons">
-                                <a th:href="@{/editarMascota/{id}(id=${mascota.id_mascota})}" class="btn btn-sm btn-edit" title="Editar">
+                                <a th:href="@{/editarMascota/{id}(id=${mascota.id_mascota})}" th:if="${nombre != null and correo != null and tipo_acceso}" class="btn btn-sm btn-edit" title="Editar">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a th:href="@{/eliminarMascota/{id}(id=${mascota.id_mascota})}" class="btn btn-sm btn-delete" title="Eliminar">
+                                <a th:href="@{/eliminarMascota/{id}(id=${mascota.id_mascota})}" th:if="${nombre != null and correo != null and tipo_acceso}" class="btn btn-sm btn-delete" title="Eliminar">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </div>

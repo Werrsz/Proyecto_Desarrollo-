@@ -1,8 +1,6 @@
 package com.proyecto_D.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import lombok.Data;
 
 //@Data
 @Entity //sirve para mapear la tabla 
@@ -13,66 +11,26 @@ public class Voluntariado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Long idUsuario;
-    private String username;
-    private String password;
-    private String nombre;
-    private String apellidos;
+    @Column(name = "id_voluntario")
+    private Long id_voluntario;
     private String correo;
-    private String telefono;
-    private String rutaImagen;
-    private String Activo;
-//    @OneToMany
-//    @JoinColumn(name="id_usuario")
-//    private List<Rol> roles;
+    private String nombre;
+    private String pais;
+    private String mensaje;
 
-    public String getActivo() {
-        return Activo;
-    }
-
-    public void setActivo(String Activo) {
-        this.Activo = Activo;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
+    public Voluntariado(String correo, String nombre, String pais, String mensaje) {
+        this.correo = correo;
         this.nombre = nombre;
+        this.pais = pais;
+        this.mensaje = mensaje;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public Long getId_voluntario() {
+        return id_voluntario;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setId_voluntario(Long id_voluntario) {
+        this.id_voluntario = id_voluntario;
     }
 
     public String getCorreo() {
@@ -83,28 +41,29 @@ public class Voluntariado implements Serializable {
         this.correo = correo;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getRutaImagen() {
-        return rutaImagen;
+    public String getPais() {
+        return pais;
     }
 
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 
-//    public List<Rol> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Rol> roles) {
-//        this.roles = roles;
-//    }
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+    
     
 }

@@ -1,8 +1,7 @@
 package com.proyecto_D.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import lombok.Data;
+import java.util.Date;
 
 //@Data
 @Entity //sirve para mapear la tabla 
@@ -13,66 +12,37 @@ public class Testimonio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Long idUsuario;
-    private String username;
-    private String password;
-    private String nombre;
-    private String apellidos;
+    @Column(name = "id_testimonios")
+    private int id_testimonios;
+    private String descripcion;
     private String correo;
-    private String telefono;
-    private String rutaImagen;
-    private String Activo;
-//    @OneToMany
-//    @JoinColumn(name="id_usuario")
-//    private List<Rol> roles;
+    private String fecha;
 
-    public String getActivo() {
-        return Activo;
+    public Testimonio() {
+        Date currentDate = new Date();
+        this.fecha = currentDate.toString();
     }
 
-    public void setActivo(String Activo) {
-        this.Activo = Activo;
+    public Testimonio(String descripcion, String correo, String fecha) {
+        this.descripcion = descripcion;
+        this.correo = correo;
+        this.fecha = fecha;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public int getId_testimonios() {
+        return id_testimonios;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId_testimonios(int id_testimonios) {
+        this.id_testimonios = id_testimonios;
     }
 
-    public String getUsername() {
-        return username;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getCorreo() {
@@ -83,28 +53,12 @@ public class Testimonio implements Serializable {
         this.correo = correo;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
-
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
-
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
-    }
-
-//    public List<Rol> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Rol> roles) {
-//        this.roles = roles;
-//    }
     
 }

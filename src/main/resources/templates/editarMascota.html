@@ -25,7 +25,7 @@
             <form action="submit" th:object="${mascota}" method="POST">
                 <div class="mb-3">
                     <label for="codigo" class="form-label">Código</label>
-                    <input type="text" class="form-control" id="id_mascota" name="id_mascota" th:field="*{id_mascota}" readonly="true"/>
+                    <input type="text" style="background-color: lightgray;" class="form-control" id="id_mascota" name="id_mascota" th:field="*{id_mascota}" readonly="true"/>
                 </div>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -47,6 +47,19 @@
                     <label for="edad" class="form-label">Edad</label>
                     <input type="number" class="form-control" id="edad" name="edad" th:field="*{edad}" required="true"/>
                 </div>
+                <div class="mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select class="form-select" id="estado" name="tipoEstado"  th:field="*{estado}" required="true">
+                        <option value="disponible" selected="true">disponible</option>
+                        <option value="tratamiento">en tratamiento</option>
+                        <option value="adoptado">adoptado</option>
+                    </select>
+                </div>
+                <div class="mb-3" hidden="true">
+                    <label for="adoptado_por" class="form-label">Adoptado Por</label>
+                    <input type="number" class="form-control" id="adoptado_por" name="adoptado_por" th:field="*{adoptado_por}" required="true"/>
+                </div>
+                
                 <button type="submit" class="btn btn-warning">Actualizar Mascota</button>
             </form>
         </div>

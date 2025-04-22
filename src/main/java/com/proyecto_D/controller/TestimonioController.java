@@ -1,67 +1,56 @@
 package com.proyecto_D.controller;
 
-import com.proyecto_D.domain.Usuario;
-import com.proyecto_D.service.UsuarioService;
+import com.proyecto_D.domain.Testimonio;
+import com.proyecto_D.service.TestimonioService;
+import jakarta.servlet.http.HttpSession;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 //import com.proyecto_D.service.FirebaseStorageService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-//@RequestMapping("/listaMascotas")
+
 @Controller
 public class TestimonioController {
 
     @Autowired
-    private UsuarioService usuarioService;
-    /*
+    private TestimonioService testimonioService;
+    
     @GetMapping("/testimonios")
-    public String listado(Model model) {
-        var usuarios = usuarioService.getUsuarios();
-        model.addAttribute("usuarios", usuarios);
-        model.addAttribute("totalUsuarios", usuarios.size());
-        return "/listaMascotas";
+    public String testimoniosPage(Model model, HttpSession session) {
+        String nombre = (String) session.getAttribute("nombre");
+        String correo = (String) session.getAttribute("correo");
+        
+        // false = 0 and 0 means Basic access
+        boolean tipo_acceso = false;
+                
+        if(session.getAttribute("tipo_acceso") != null){
+            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+        }
+        
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("correo", correo);
+        model.addAttribute("tipo_acceso", tipo_acceso);
+        
+        Date currentDate = new Date();
+        
+        Testimonio testimonio = new Testimonio("", correo, currentDate.toString());
+                        
+        var testimonios = testimonioService.getTestimonios();
+        
+        model.addAttribute("testimonio", testimonio);
+        model.addAttribute("testimonios", testimonios);
+        return "testimonios"; // This should match about.html in src/main/resources/templates
     }
-
-    @GetMapping("/nuevo")
-    public String usuarioNuevo(Usuario usuario) {
-        return "/usuario/modifica";
+    
+    @PostMapping("/testimonios/submit")
+    public String inscribirseSubmit(Testimonio testimonio) {
+                
+        testimonioService.save(testimonio);
+        
+        return "redirect:/testimonios";
     }
-
-//    @Autowired
-//    private FirebaseStorageService firebaseStorageService;
-//
-//    @PostMapping("/guardar")
-//    public String usuarioGuardar(Usuario usuario,
-//            @RequestParam("imagenFile") MultipartFile imagenFile) {
-//        if (!imagenFile.isEmpty()) {
-//            usuarioService.save(usuario,false);
-//            usuario.setRutaImagen(
-//                    firebaseStorageService.cargaImagen(
-//                            imagenFile,
-//                            "usuario",
-//                            usuario.getIdUsuario()));
-//        }
-//        usuarioService.save(usuario,true);
-//        return "redirect:/usuario/listado";
-//    }
-
-    @GetMapping("/eliminar/{idUsuario}")
-    public String usuarioEliminar(Usuario usuario) {
-        usuarioService.delete(usuario);
-        return "redirect:/usuario/listado";
-    }
-
-    @GetMapping("/modificar/{idUsuario}")
-    public String usuarioModificar(Usuario usuario, Model model) {
-        usuario = usuarioService.getUsuario(usuario);
-        model.addAttribute("usuario", usuario);
-        return "/usuario/modifica";
-    }
-     */
 }

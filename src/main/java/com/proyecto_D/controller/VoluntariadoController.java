@@ -1,7 +1,8 @@
 package com.proyecto_D.controller;
 
-import com.proyecto_D.domain.Usuario;
-import com.proyecto_D.service.UsuarioService;
+import com.proyecto_D.domain.Voluntariado;
+import com.proyecto_D.service.VoluntariadoService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,50 +19,37 @@ import org.springframework.web.multipart.MultipartFile;
 public class VoluntariadoController {
 
     @Autowired
-    private UsuarioService usuarioService;
-    /*
-    @GetMapping("/voluntariados")
-    public String listado(Model model) {
-        var usuarios = usuarioService.getUsuarios();
-        model.addAttribute("usuarios", usuarios);
-        model.addAttribute("totalUsuarios", usuarios.size());
-        return "/listaMascotas";
+    private VoluntariadoService voluntariadoService; 
+    
+    @GetMapping("/inscribirse")
+    public String inscribirsePage(Model model, HttpSession session) {
+        String nombre = (String) session.getAttribute("nombre");
+        String correo = (String) session.getAttribute("correo");
+        
+        // false = 0 and 0 means Basic access
+        boolean tipo_acceso = false;
+                
+        if(session.getAttribute("tipo_acceso") != null){
+            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+        }
+        
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("correo", correo);
+        model.addAttribute("tipo_acceso", tipo_acceso);
+        
+        Voluntariado voluntario = new Voluntariado(correo, nombre, "", "");
+        
+        model.addAttribute("voluntariado", voluntario);
+        return "inscribirse"; // This should match about.html in src/main/resources/templates
     }
-
-    @GetMapping("/nuevo")
-    public String usuarioNuevo(Usuario usuario) {
-        return "/usuario/modifica";
+    
+    @PostMapping("/inscribirse/submit")
+    public String inscribirseSubmit(Voluntariado voluntariado) {
+        voluntariadoService.save(voluntariado);
+        
+        return "redirect:/";
     }
-
-//    @Autowired
-//    private FirebaseStorageService firebaseStorageService;
-//
-//    @PostMapping("/guardar")
-//    public String usuarioGuardar(Usuario usuario,
-//            @RequestParam("imagenFile") MultipartFile imagenFile) {
-//        if (!imagenFile.isEmpty()) {
-//            usuarioService.save(usuario,false);
-//            usuario.setRutaImagen(
-//                    firebaseStorageService.cargaImagen(
-//                            imagenFile,
-//                            "usuario",
-//                            usuario.getIdUsuario()));
-//        }
-//        usuarioService.save(usuario,true);
-//        return "redirect:/usuario/listado";
-//    }
-
-    @GetMapping("/eliminar/{idUsuario}")
-    public String usuarioEliminar(Usuario usuario) {
-        usuarioService.delete(usuario);
-        return "redirect:/usuario/listado";
-    }
-
-    @GetMapping("/modificar/{idUsuario}")
-    public String usuarioModificar(Usuario usuario, Model model) {
-        usuario = usuarioService.getUsuario(usuario);
-        model.addAttribute("usuario", usuario);
-        return "/usuario/modifica";
-    }
-     */
+    
+    
+            
 }

@@ -20,9 +20,18 @@ public class Mascota implements Serializable {
     private String descripcion;
     private String edad;
     private String estado;
+    private int adoptado_por;
 //    @OneToMany
 //    @JoinColumn(name="id_usuario")
 //    private List<Rol> roles;
+
+    public int getAdoptado_por() {
+        return adoptado_por;
+    }
+
+    public void setAdoptado_por(int adoptado_por) {
+        this.adoptado_por = adoptado_por;
+    }
 
     public Long getId_mascota() {
         return id_mascota;
@@ -71,7 +80,5 @@ public class Mascota implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
     
 }

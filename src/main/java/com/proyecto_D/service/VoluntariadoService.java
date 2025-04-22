@@ -12,7 +12,10 @@ public class VoluntariadoService {
 //se incorpora rolService porque cuando se crea un usuario.. tambien se le crea un rool
     @Autowired
     private VoluntariadoRepository voluntariadoRepository;
-    //@Autowired
-    //private RolRepository rolRepository;
+    
+    @Transactional
+    public void save(Voluntariado voluntariado) {
+        voluntariadoRepository.save(voluntariado);
+    }
 
 }

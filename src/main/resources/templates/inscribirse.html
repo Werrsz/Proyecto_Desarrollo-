@@ -27,22 +27,22 @@
                   
                     <div class="card p-4 shadow-sm mt-4">
                         <h3 class="text-center">Formulario de Postulación</h3>
-                        <form id="volunteerForm">
+                        <form id="volunteerForm" action="inscribirse/submit" th:object="${voluntariado}" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" required=""/>
+                                <input type="email" style="background-color: lightgray;" class="form-control" name="correo" id="correo" th:field="*{correo}" required="true" readonly="true"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Nombre Completo</label>
-                                <input type="text" class="form-control" id="name" required=""/>
+                                <label class="form-label">Nombre</label>
+                                <input type="text" style="background-color: lightgray;" class="form-control" name="nombre" id="nombre" th:field="*{nombre}" required="true" readonly="true"/>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">País</label>
-                                <input type="text" class="form-control" id="country" required=""/>
+                                <input type="text" class="form-control" name="pais" id="pais" required="true"/>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Mensaje</label>
-                                <textarea class="form-control" id="message" rows="4" placeholder="Cuéntanos por qué quieres ser voluntario" required=""></textarea>
+                                <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos por qué quieres ser voluntario" required="true"></textarea>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success w-100">Postularme</button>
@@ -50,34 +50,6 @@
                         </form>
                     </div>
                 </div>
-
-              
-                <div class="modal fade" id="confirmationModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Solicitud Enviada</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Su solicitud ha sido enviada, ¡Gracias por su interés en ser voluntario! 🐶🐱💖</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <script>
-                    document.getElementById("volunteerForm").addEventListener("submit", function (event) {
-                        event.preventDefault();
-
-                      
-                        let modal = new bootstrap.Modal(document.getElementById("confirmationModal"));
-                        modal.show();
-
-                   
-                        document.getElementById("volunteerForm").reset();
-                    });
-                </script>
 
             </div>
         </div>

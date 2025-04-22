@@ -3,6 +3,7 @@ package com.proyecto_D.controller;
 
 import com.proyecto_D.domain.Mascota;
 import com.proyecto_D.service.MascotaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,21 @@ public class MascotaController {
     private MascotaService mascotaService;
 
     @GetMapping("/listaMascotas")
-    public String listado(Model model) {
+    public String listado(Model model, HttpSession session) {
+        String nombre = (String) session.getAttribute("nombre");
+        String correo = (String) session.getAttribute("correo");
+        
+        // false = 0 and 0 means Basic access
+        boolean tipo_acceso = false;
+                
+        if(session.getAttribute("tipo_acceso") != null){
+            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+        }
+        
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("correo", correo);
+        model.addAttribute("tipo_acceso", tipo_acceso);
+        
         var mascotas = mascotaService.getMascotas();
         model.addAttribute("mascotas", mascotas);
         model.addAttribute("totalMascotas", mascotas.size());
@@ -40,7 +55,21 @@ public class MascotaController {
     }
     
     @GetMapping("/editarMascota/{id_mascota}")
-    public String editarMascota(@PathVariable("id_mascota") long id_mascota, Model model) {
+    public String editarMascota(@PathVariable("id_mascota") long id_mascota, Model model, HttpSession session){
+        String nombre = (String) session.getAttribute("nombre");
+        String correo = (String) session.getAttribute("correo");
+        
+        // false = 0 and 0 means Basic access
+        boolean tipo_acceso = false;
+                
+        if(session.getAttribute("tipo_acceso") != null){
+            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+        }
+        
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("correo", correo);
+        model.addAttribute("tipo_acceso", tipo_acceso);
+        
         var mascota = mascotaService.getMascotaById(id_mascota);
         model.addAttribute("mascota", mascota);
         return "editarMascota";
