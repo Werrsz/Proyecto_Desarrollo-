@@ -18,6 +18,9 @@ public class Voluntariado implements Serializable {
     private String pais;
     private String mensaje;
 
+    public Voluntariado() {
+    }
+    
     public Voluntariado(String correo, String nombre, String pais, String mensaje) {
         this.correo = correo;
         this.nombre = nombre;

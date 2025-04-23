@@ -3,73 +3,91 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head th:replace="~{layout/plantilla :: head}">
-    <title>Citas de Grooming y Castraciones</title>
-    <meta charset="UTF-8"/>
-</head>
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Citas de Grooming y Castraciones</title>
+        <meta charset="UTF-8"/>
+    </head>
 
-<body>
+    <body>
 
-    <div class="maincontainer">
-        <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
+        <div class="maincontainer">
+            <div th:replace="~{layout/plantilla :: header}" class="leftside"></div>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand">Mis Citas</a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand">Mis Citas</a>
+                </div>
+            </nav>
+
+            <div class="container mt-5">
+                <h2 class="text-center mb-4" th:if="${nombre != null and correo != null and tipo_acceso}">Eres Doctor, Citas de Grooming y Castraciones</h2>
+                <h2 class="text-center mb-4" th:if="${nombre != null and correo != null and !tipo_acceso}">Citas de Grooming y Castraciones</h2>
+
+                <form action="misCitas/submit" th:object="${cita}" method="POST" th:if="${nombre != null and correo != null and !tipo_acceso}" class="p-4 border rounded shadow-sm bg-white">
+                    <div class="mb-3">
+                        <label for="tipo_servicio" class="form-label">Tipo de Servicio</label>
+                        <select class="form-select" id="tipo_servicio" name="tipo_servicio" required="true">
+                            <option value="Castracion">Castración</option>
+                            <option value="Desparasitacion" selected="true">Desparasitación</option>
+                            <option value="Revision Medica">Revisión médica</option>
+                            <option value="Vacunacion">Vacunación</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Fecha</label>
+                        <input type="date" class="form-control" name="fecha" id="fecha" required="true"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <!-- Display only (not submitted) -->
+                        <input type="text" id="usuario" style="background-color: lightgray;" class="form-control" th:value="${user.nombre}" disabled="true"/>
+
+                        <!-- Hidden input (actually submitted) -->
+                        <input type="hidden" id="id_usuario" name="id_usuario" th:value="${user.id_usuario}" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_doctor" class="form-label">Doctor</label>
+                        <select class="form-select" id="id_doctor" name="id_doctor" required="true">
+                            <option th:value="${doctor.id_usuario}" th:text="${doctor.nombre}" th:each="doctor : ${doctores}"></option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning">Registrar Cita</button>
+                </form>
+
+                <ul class="list-group" th:if="${miscitas != null}">
+
+                    <li class="list-group-item d-flex align-items-center liListaMascotas" th:each="cita : ${miscitas}" >
+                        <div class="pet-icon me-3">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div>
+                            <p class="mb-1"><strong>Código:</strong> [[${cita.id_cita}]]</p>
+                            <p class="mb-1"><strong>Tipo Servicio:</strong> [[${cita.tipo_servicio}]]</p>
+                            <p class="mb-1"><strong>Fecha:</strong> [[${cita.fecha}]]</p>
+                            <p class="mb-1"><strong>Estado:</strong> [[${cita.estado}]]</p>
+                            <p class="mb-0"><strong>ID Doctor</strong> [[${cita.id_doctor}]]</p>
+                            <p class="mb-0"><strong>ID Usuario</strong> [[${cita.id_usuario}]]</p>
+                        </div>
+                        <!-- Buttons at the right side -->
+                        <div class="action-buttons">
+                            <a th:href="@{/misCitas/editar/{id_cita}(id_cita=${cita.id_cita})}" th:if="${nombre != null and correo != null and tipo_acceso}" class="btn btn-sm btn-edit" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="text-center p-2" th:if="${miscitas == null}">
+                    <span>No Hay Citas</span>
+                </div>
+
             </div>
-        </nav>
-
-        <div class="container mt-5">
-            <h2 class="text-center mb-4">Mis Citas de Grooming y Castraciones</h2>
-
-       
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Tipo de Servicio</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-         
-                    <tr>
-                        <td>10/04/2025</td>
-                        <td>Grooming</td>
-                        <td>Confirmada</td>
-                        <td>
-                            <a href="modificarCita" class="btn btn-warning btn-sm">Modificar</a>
-                            <a href="cancelarCita" class="btn btn-danger btn-sm">Cancelar</a>
-                        </td>
-                    </tr>
-
-        
-                    <tr>
-                        <td>15/04/2025</td>
-                        <td>Castración</td>
-                        <td>Pendiente</td>
-                        <td>
-                            <a href="modificarCita" class="btn btn-warning btn-sm">Modificar</a>
-                            <a href="cancelarCita" class="btn btn-danger btn-sm">Cancelar</a>
-                        </td>
-                    </tr>
-
- 
-                    <tr>
-                        <td>20/04/2025</td>
-                        <td>Grooming</td>
-                        <td>Confirmada</td>
-                        <td>
-                            <a href="modificarCita" class="btn btn-warning btn-sm">Modificar</a>
-                            <a href="cancelarCita" class="btn btn-danger btn-sm">Cancelar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
         </div>
-    </div>
 
-</body>
+    </body>
 </html>

@@ -297,22 +297,22 @@ public class PageController {
     }
     */
     
-    @GetMapping("/misCitas")
-    public String misCitasPage(Model model, HttpSession session) {
-        String nombre = (String) session.getAttribute("nombre");
-        String correo = (String) session.getAttribute("correo");
-        
-        // false = 0 and 0 means Basic access
-        boolean tipo_acceso = false;
-                
-        if(session.getAttribute("tipo_acceso") != null){
-            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
-        }
-        
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("correo", correo);
-        model.addAttribute("tipo_acceso", tipo_acceso);
-        
-        return "misCitas";
-    }
+//    @GetMapping("/misCitas")
+//    public String misCitasPage(Model model, HttpSession session) {
+//        String nombre = (String) session.getAttribute("nombre");
+//        String correo = (String) session.getAttribute("correo");
+//        
+//        // false = 0 and 0 means Basic access
+//        boolean tipo_acceso = false;
+//                
+//        if(session.getAttribute("tipo_acceso") != null){
+//            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+//        }
+//        
+//        model.addAttribute("nombre", nombre);
+//        model.addAttribute("correo", correo);
+//        model.addAttribute("tipo_acceso", tipo_acceso);
+//        
+//        return "misCitas";
+//    }
 }

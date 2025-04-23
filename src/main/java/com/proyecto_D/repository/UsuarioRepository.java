@@ -2,6 +2,7 @@ package com.proyecto_D.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.proyecto_D.domain.Usuario;
+import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 
 public interface UsuarioRepository
@@ -38,5 +39,10 @@ public interface UsuarioRepository
         String correo, 
         String contrasena
     );
-
+    
+    @Query(nativeQuery=true,
+           value="SELECT * " +
+                 "FROM Usuario u " +
+                 "WHERE u.tipo_acceso = 1")
+    public List<Usuario> getAdminUsers();
 }

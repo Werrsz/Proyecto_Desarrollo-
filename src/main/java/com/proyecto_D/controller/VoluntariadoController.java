@@ -40,6 +40,11 @@ public class VoluntariadoController {
         Voluntariado voluntario = new Voluntariado(correo, nombre, "", "");
         
         model.addAttribute("voluntariado", voluntario);
+        
+        // Get voluntario List
+        var voluntarios = voluntariadoService.getVoluntarios();
+        model.addAttribute("voluntariados", voluntarios);
+        
         return "inscribirse"; // This should match about.html in src/main/resources/templates
     }
     

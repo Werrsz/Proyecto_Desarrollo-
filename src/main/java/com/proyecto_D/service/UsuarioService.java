@@ -3,6 +3,7 @@ package com.proyecto_D.service;
 import com.proyecto_D.domain.Usuario;
 import com.proyecto_D.repository.UsuarioRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,16 @@ public class UsuarioService {
     @Transactional(readOnly = true)
     public Usuario getUsuario(Usuario usuario) {
         return usuarioRepository.findById(usuario.getId_usuario()).orElse(null);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Usuario> getAdminUsers() {
+        return usuarioRepository.getAdminUsers();
+    }
+    
+    @Transactional(readOnly = true)
+    public Usuario getUsuarioByID(Long id_usuario) {
+        return usuarioRepository.findById(id_usuario).orElse(null);
     }
     
     /*

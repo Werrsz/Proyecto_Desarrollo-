@@ -50,7 +50,7 @@
                     <h3 class="mb-3">Testimonios Registrados</h3>
                     <ul class="list-group" id="feedbackList">
                         <!-- Dynamic Items will be added here -->
-                        <li class="list-group-item d-flex justify-content-between align-items-center" th:each="testimonio : ${testimonios}">
+                        <li class="list-group-item d-flex justify-content-between align-items-center rounded mb-1" th:each="testimonio : ${testimonios}">
                             <div>
                                 <p class="mb-1"><strong>Fecha:</strong> [[${testimonio.fecha}]]</p>
                                 <p class="mb-1"><strong>Email:</strong> [[${testimonio.correo}]]</p>

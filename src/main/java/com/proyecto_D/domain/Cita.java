@@ -1,4 +1,5 @@
 package com.proyecto_D.domain;
+
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,98 +14,64 @@ public class Cita implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Long idUsuario;
-    private String username;
-    private String password;
-    private String nombre;
-    private String apellidos;
-    private String correo;
-    private String telefono;
-    private String rutaImagen;
-    private String Activo;
-//    @OneToMany
-//    @JoinColumn(name="id_usuario")
-//    private List<Rol> roles;
+    @Column(name = "id_cita")
+    private Long id_cita;
+    private String tipo_servicio;
+    private String fecha;
+    private String estado;
+    private Long id_doctor;
+    private Long id_usuario;
 
-    public String getActivo() {
-        return Activo;
+    public Cita() {
     }
 
-    public void setActivo(String Activo) {
-        this.Activo = Activo;
+    public Long getId_cita() {
+        return id_cita;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public void setId_cita(Long id_cita) {
+        this.id_cita = id_cita;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public String getTipo_servicio() {
+        return tipo_servicio;
     }
 
-    public String getUsername() {
-        return username;
+    public void setTipo_servicio(String tipo_servicio) {
+        this.tipo_servicio = tipo_servicio;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getFecha() {
+        return fecha;
     }
 
-    public String getPassword() {
-        return password;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getEstado() {
+        return estado;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Long getId_doctor() {
+        return id_doctor;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public void setId_doctor(Long id_doctor) {
+        this.id_doctor = id_doctor;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
-    public String getCorreo() {
-        return correo;
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
-
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
-    }
-
-//    public List<Rol> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Rol> roles) {
-//        this.roles = roles;
-//    }
     
+
 }

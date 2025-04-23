@@ -17,5 +17,10 @@ public class VoluntariadoService {
     public void save(Voluntariado voluntariado) {
         voluntariadoRepository.save(voluntariado);
     }
+    
+    @Transactional(readOnly = true)
+    public List<Voluntariado> getVoluntarios() {
+        return voluntariadoRepository.findAll();
+    }
 
 }

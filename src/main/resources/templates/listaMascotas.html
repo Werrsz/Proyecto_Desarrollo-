@@ -21,7 +21,7 @@
             <div class="bg-light">
 
                 <div class="container mt-5">
-                    <div class="d-flex justify-content-center mb-4">
+                    <div class="d-flex justify-content-center mb-4"  th:if="${nombre != null and correo != null and tipo_acceso}">
                         <a href="agregarMascota" class="btn btn-success">Agregar Mascota</a>
                     </div>
                     <h2 class="text-center mb-4">Lista de Mascotas</h2>

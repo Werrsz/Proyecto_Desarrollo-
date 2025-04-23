@@ -11,7 +11,7 @@
 
         <div class="maincontainer">
             <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
-            
+
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand">Inscripciones</a>
@@ -20,11 +20,11 @@
 
             <div class="bg-light">
 
-                <div class="container mt-5">
+                <div class="container mt-5" th:if="${nombre != null and correo != null and !tipo_acceso}">
                     <h1 class="text-center text-primary">¡Únete como Voluntario! 🐾</h1>
                     <p class="text-center text-muted">Tu ayuda puede marcar la diferencia en la vida de muchas mascotas. En <strong>Patitas Solidarias</strong>, buscamos personas apasionadas que quieran contribuir con su tiempo y esfuerzo al rescate y bienestar de los animales en situación de abandono. ¡Sé parte de nuestro equipo y ayúdanos a salvar vidas! 💖</p>
 
-                  
+
                     <div class="card p-4 shadow-sm mt-4">
                         <h3 class="text-center">Formulario de Postulación</h3>
                         <form id="volunteerForm" action="inscribirse/submit" th:object="${voluntariado}" method="POST">
@@ -49,6 +49,25 @@
                             </div>
                         </form>
                     </div>
+                </div>
+
+                <div class="container mt-5" th:if="${nombre != null and correo != null and tipo_acceso}">
+                    <h1 class="text-center text-primary">¡Lista de Voluntarios! 🐾</h1>
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex align-items-center" th:each="voluntariado : ${voluntariados}">
+                            <div class="pet-icon me-3">
+                                <i class="fas fa-paw"></i>
+                            </div>
+                            <div>
+                                <p class="mb-1"><strong>Código:</strong> [[${voluntariado.id_voluntario}]]</p>
+                                <p class="mb-1"><strong>Nombre:</strong> [[${voluntariado.nombre}]]</p>
+                                <p class="mb-1"><strong>Correo:</strong> [[${voluntariado.correo}]]</p>
+                                <p class="mb-1"><strong>Pais:</strong> [[${voluntariado.pais}]]</p>
+                                <p class="mb-1"><strong>Mensaje</strong> [[${voluntariado.mensaje}]]</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
             </div>

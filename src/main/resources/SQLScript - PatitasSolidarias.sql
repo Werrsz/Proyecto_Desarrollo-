@@ -7,6 +7,20 @@
  * Created: 22 abr 2025
  */
 
+/*Se crea la base de datos */
+drop schema if exists patitasSolidarias;
+drop user if exists usuario_admin;
+CREATE SCHEMA patitasSolidarias ;
+
+/*Se crea un usuario para la base de datos llamado "usuario_prueba" y tiene la contraseña "Usuario_Clave."*/
+create user 'usuario_admin'@'%' identified by 'Usuar1o_Clave.';
+
+/*Se asignan los prvilegios sobr ela base de datos TechShop al usuario creado */
+grant all privileges on patitasSolidarias.* to 'usuario_admin'@'%';
+flush privileges;
+
+DROP DATABASE patitasSolidarias;
+
 -- use patitasSolidarias;
 CREATE DATABASE patitasSolidarias;
 
@@ -56,8 +70,8 @@ CREATE TABLE citas (
     tipo_servicio VARCHAR(100),
     fecha DATE,
     estado VARCHAR(50),
-    correo_usuario VARCHAR(100),
-    id_mascota INT
+    id_doctor INT,
+    id_usuario INT
 );
 
 -- Tabla: Necesidades

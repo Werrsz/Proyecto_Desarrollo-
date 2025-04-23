@@ -1,16 +1,13 @@
-
-USE patitasSolidarias;
-
 -- Inserciones para la tabla: usuario
 INSERT INTO usuario (correo, tipo_acceso, nombre, contrasena) VALUES
-('ana.perez@email.com', 0, 'Ana Pérez', 'contrasena123'),
+('ana.perez@email.com', 1, 'Ana Pérez', 'contrasena123'),
 ('mario.rios@email.com', 1, 'Mario Ríos', 'admin456'),
-('lucia.gomez@email.com', 0, 'Lucía Gómez', 'lucia789');
+('lucia.gomez@email.com', 1, 'Lucía Gómez', 'lucia789');
 
 -- Inserciones para la tabla: mascota
 INSERT INTO mascota (nombre, tipo_animal, descripcion, edad, estado, adoptado_por) VALUES
-('Firulais', 'Perro', 'Perro mestizo muy juguetón', 3, 'disponible', null),
-('Mishi', 'Gato', 'Gata rescatada de la calle', 2, 'en tratamiento', null),
+('Firulais', 'Perro', 'Perro mestizo muy juguetón', 3, 'disponible', 0),
+('Mishi', 'Gato', 'Gata rescatada de la calle', 2, 'en tratamiento', 0),
 ('Toby', 'Perro', 'Perrito muy amigable, ideal para niños', 4, 'adoptado', 5);
 
 -- Inserciones para la tabla: adopciones
@@ -26,10 +23,10 @@ INSERT INTO castraciones (id_mascota, clinica, precio, fecha) VALUES
 (3, 'Veterinaria El Arca', 14000.00, '2025-04-01');
 
 -- Inserciones para la tabla: citas
-INSERT INTO citas (tipo_servicio, fecha, estado, correo_usuario, id_mascota) VALUES
-('Vacunación', '2025-04-10', 'pendiente', 'ana.perez@email.com', 1),
-('Revisión médica', '2025-04-15', 'completada', 'lucia.gomez@email.com', 2),
-('Desparasitación', '2025-04-20', 'cancelada', 'mario.rios@email.com', 3);
+INSERT INTO citas (tipo_servicio, fecha, estado, id_doctor , id_usuario) VALUES
+('Vacunación', '2025-04-10', 'pendiente', 2, 5),
+('Revisión médica', '2025-04-15', 'completada', 2, 1),
+('Desparasitación', '2025-04-20', 'cancelada', 2, 5);
 
 -- Inserciones para la tabla: necesidades
 INSERT INTO necesidades (descripcion, tipo, cantidad, fecha_solicitud) VALUES
