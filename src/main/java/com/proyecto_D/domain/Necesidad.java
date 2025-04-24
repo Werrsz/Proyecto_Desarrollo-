@@ -1,6 +1,8 @@
 package com.proyecto_D.domain;
+
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import lombok.Data;
 
@@ -13,98 +15,63 @@ public class Necesidad implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Long idUsuario;
-    private String username;
-    private String password;
-    private String nombre;
-    private String apellidos;
-    private String correo;
-    private String telefono;
-    private String rutaImagen;
-    private String Activo;
-//    @OneToMany
-//    @JoinColumn(name="id_usuario")
-//    private List<Rol> roles;
-
-    public String getActivo() {
-        return Activo;
-    }
-
-    public void setActivo(String Activo) {
-        this.Activo = Activo;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
-
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
-    }
-
-//    public List<Rol> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Rol> roles) {
-//        this.roles = roles;
-//    }
+    @Column(name = "id_necesidad")
+    private Long id_necesidad;
+    private String descripcion;
+    private String tipo;
+    private Long cantidad;
+    private String fecha;
+    private boolean activa;
     
+    public Necesidad() {
+    }
+
+    public Long getId_necesidad() {
+        return id_necesidad;
+    }
+
+    public void setId_necesidad(Long id_necesidad) {
+        this.id_necesidad = id_necesidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public boolean isActiva() {
+        return activa;
+    }
+
+    public void setActiva(boolean activa) {
+        this.activa = activa;
+    }
+
 }

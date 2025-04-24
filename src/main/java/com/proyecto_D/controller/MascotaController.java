@@ -89,37 +89,4 @@ public class MascotaController {
         return "redirect:/listaMascotas";
     }
 
-//    @Autowired
-//    private FirebaseStorageService firebaseStorageService;
-//
-//    @PostMapping("/guardar")
-//    public String usuarioGuardar(Usuario usuario,
-//            @RequestParam("imagenFile") MultipartFile imagenFile) {
-//        if (!imagenFile.isEmpty()) {
-//            usuarioService.save(usuario,false);
-//            usuario.setRutaImagen(
-//                    firebaseStorageService.cargaImagen(
-//                            imagenFile,
-//                            "usuario",
-//                            usuario.getIdUsuario()));
-//        }
-//        usuarioService.save(usuario,true);
-//        return "redirect:/usuario/listado";
-//    }
-    
-    /*
-
-    @GetMapping("/eliminar/{idUsuario}")
-    public String usuarioEliminar(Mascota usuario) {
-        mascotaService.delete(usuario);
-        return "redirect:/usuario/listado";
-    }
-
-    @GetMapping("/modificar/{idUsuario}")
-    public String usuarioModificar(Mascota usuario, Model model) {
-        usuario = mascotaService.getUsuario(usuario);
-        model.addAttribute("usuario", usuario);
-        return "/usuario/modifica";
-    }
-    */
 }

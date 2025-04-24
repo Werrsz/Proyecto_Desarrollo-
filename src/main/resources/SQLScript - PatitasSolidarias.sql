@@ -50,9 +50,8 @@ CREATE TABLE mascota (
 CREATE TABLE adopciones (
     id_adopcion INT PRIMARY KEY AUTO_INCREMENT,
     id_mascota INT,
-    descripcion_historia TEXT,
     fecha_adopcion DATE,
-    correo_usuario VARCHAR(100)
+    id_usuario INT
 );
 
 -- Tabla: Castraciones
@@ -80,17 +79,17 @@ CREATE TABLE necesidades (
     descripcion TEXT,
     tipo VARCHAR(50),
     cantidad INT,
-    fecha_solicitud DATE
+    fecha DATE, 
+    activa bit 
 );
 
 -- Tabla: Donaciones registradas
 CREATE TABLE donaciones (
     id_donacion INT PRIMARY KEY AUTO_INCREMENT,
+    id_necesidad INT,
     fecha DATE,
-    descripcion TEXT,
-    tipo VARCHAR(50),
     cantidad DECIMAL(10,2),
-    correo_donante VARCHAR(100)
+    id_usuario int
 );
 
 -- Tabla: Voluntariado

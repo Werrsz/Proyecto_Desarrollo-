@@ -21,14 +21,14 @@
             <div class="bg-light">
 
                 <div class="container mt-5">
-                    <div class="d-flex justify-content-center mb-4"  th:if="${nombre != null and correo != null and tipo_acceso}">
+                    <div class="d-flex justify-content-center mb-4" th:if="${nombre != null and correo != null and tipo_acceso}">
                         <a href="agregarMascota" class="btn btn-success">Agregar Mascota</a>
                     </div>
                     <h2 class="text-center mb-4">Lista de Mascotas</h2>
 
                     <ul class="list-group" th:if="${mascotas != null and !mascotas.empty}">
                         <!-- Pet Item 1 -->
-                        <li class="list-group-item d-flex align-items-center liListaMascotas" th:each="mascota : ${mascotas}">
+                        <li class="list-group-item d-flex align-items-center liListaMascotas" th:if="${mascota.estado != 'adoptado'}" th:each="mascota : ${mascotas}">
                             <div class="pet-icon me-3">
                                 <i class="fas fa-paw"></i>
                             </div>
@@ -39,7 +39,7 @@
                                 <p class="mb-1"><strong>Descripción:</strong> [[${mascota.descripcion}]]</p>
                                 <p class="mb-0"><strong>Edad:</strong> [[${mascota.edad}]]</p>
                                 <p class="mb-0"><strong>Estado</strong> [[${mascota.estado}]]</p>
-                                <a href="historiaMascota" class="btn btn-outline-warning" th:if="${nombre != null and correo != null and !tipo_acceso}" >Adóptame</a>
+                                <a th:href="@{/adoptarMascota/{id_mascota}(id_mascota=${mascota.id_mascota})}" class="btn btn-outline-warning" th:if="${nombre != null and correo != null and !tipo_acceso}" >Adoptar</a>
                                 <a href="requisitosAdopcion" class="btn btn-outline-success">Requerimientos de adopción</a>
                             </div>
                             <!-- Buttons at the right side -->

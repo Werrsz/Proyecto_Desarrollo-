@@ -41,7 +41,11 @@ public class UsuarioService {
     
     @Transactional(readOnly = true)
     public Usuario getUsuarioByID(Long id_usuario) {
-        return usuarioRepository.findById(id_usuario).orElse(null);
+        if (id_usuario != null) {
+            return usuarioRepository.findById(id_usuario).orElse(null);
+        }
+        
+        return null;
     }
     
     /*

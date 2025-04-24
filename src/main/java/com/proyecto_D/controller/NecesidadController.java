@@ -1,11 +1,14 @@
 package com.proyecto_D.controller;
 
-import com.proyecto_D.domain.Usuario;
-import com.proyecto_D.service.UsuarioService;
+import com.proyecto_D.domain.Necesidad;
+import com.proyecto_D.service.NecesidadService;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //import com.proyecto_D.service.FirebaseStorageService;
@@ -18,50 +21,48 @@ import org.springframework.web.multipart.MultipartFile;
 public class NecesidadController {
 
     @Autowired
-    private UsuarioService usuarioService;
-    /*
+    private NecesidadService necesidadService;
+
     @GetMapping("/necesidades")
-    public String listado(Model model) {
-        var usuarios = usuarioService.getUsuarios();
-        model.addAttribute("usuarios", usuarios);
-        model.addAttribute("totalUsuarios", usuarios.size());
-        return "/listaMascotas";
+    public String necesidadesPage(Model model, HttpSession session) {
+        String nombre = (String) session.getAttribute("nombre");
+        String correo = (String) session.getAttribute("correo");
+
+        // false = 0 and 0 means Basic access
+        boolean tipo_acceso = false;
+
+        if (session.getAttribute("tipo_acceso") != null) {
+            tipo_acceso = (boolean) session.getAttribute("tipo_acceso");
+        }
+
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("correo", correo);
+        model.addAttribute("tipo_acceso", tipo_acceso);
+
+        // Cargamos la lista de necesidades
+        List<Necesidad> necesidades = necesidadService.getNecesidades();
+
+        model.addAttribute("necesidades", necesidades);
+
+        return "necesidades"; // This should match about.html in src/main/resources/templates
     }
 
-    @GetMapping("/nuevo")
-    public String usuarioNuevo(Usuario usuario) {
-        return "/usuario/modifica";
+    @PostMapping("/necesidades/submit")
+    public String necesidadSubmit(Necesidad necesidad) {
+
+        // Setear estado como activo por defecto
+        necesidad.setActiva(true);
+
+        necesidadService.save(necesidad);
+
+        return "redirect:/necesidades";
     }
 
-//    @Autowired
-//    private FirebaseStorageService firebaseStorageService;
-//
-//    @PostMapping("/guardar")
-//    public String usuarioGuardar(Usuario usuario,
-//            @RequestParam("imagenFile") MultipartFile imagenFile) {
-//        if (!imagenFile.isEmpty()) {
-//            usuarioService.save(usuario,false);
-//            usuario.setRutaImagen(
-//                    firebaseStorageService.cargaImagen(
-//                            imagenFile,
-//                            "usuario",
-//                            usuario.getIdUsuario()));
-//        }
-//        usuarioService.save(usuario,true);
-//        return "redirect:/usuario/listado";
-//    }
+    @GetMapping("/eliminarNecesidad/{id_necesidad}")
+    public String eliminarNecesidad(@PathVariable("id_necesidad") long id_necesidad) {
+        necesidadService.deleteByID(id_necesidad);
 
-    @GetMapping("/eliminar/{idUsuario}")
-    public String usuarioEliminar(Usuario usuario) {
-        usuarioService.delete(usuario);
-        return "redirect:/usuario/listado";
+        return "redirect:/necesidades";
     }
 
-    @GetMapping("/modificar/{idUsuario}")
-    public String usuarioModificar(Usuario usuario, Model model) {
-        usuario = usuarioService.getUsuario(usuario);
-        model.addAttribute("usuario", usuario);
-        return "/usuario/modifica";
-    }
-     */
 }

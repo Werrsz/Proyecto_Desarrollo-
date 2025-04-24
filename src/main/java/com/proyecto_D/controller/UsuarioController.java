@@ -45,6 +45,7 @@ public class UsuarioController {
                 session.setAttribute("nombre", user.getNombre());
                 session.setAttribute("correo", user.getCorreo());
                 session.setAttribute("tipo_acceso", user.getTipo_acceso());
+                session.setAttribute("id_usuario", user.getId_usuario());
               
             }else{
                 // No coincide la contrasena
@@ -87,6 +88,7 @@ public class UsuarioController {
                 session.setAttribute("nombre", nuevoUsuario.getNombre());
                 session.setAttribute("correo", nuevoUsuario.getCorreo());
                 session.setAttribute("tipo_acceso", nuevoUsuario.getTipo_acceso());
+                session.setAttribute("id_usuario", nuevoUsuario.getId_usuario());
               
             }else{
                 // No fue regustrado
@@ -104,35 +106,4 @@ public class UsuarioController {
         return "registro";
     }
 
-//    @Autowired
-//    private FirebaseStorageService firebaseStorageService;
-//
-//    @PostMapping("/guardar")
-//    public String usuarioGuardar(Usuario usuario,
-//            @RequestParam("imagenFile") MultipartFile imagenFile) {
-//        if (!imagenFile.isEmpty()) {
-//            usuarioService.save(usuario,false);
-//            usuario.setRutaImagen(
-//                    firebaseStorageService.cargaImagen(
-//                            imagenFile,
-//                            "usuario",
-//                            usuario.getIdUsuario()));
-//        }
-//        usuarioService.save(usuario,true);
-//        return "redirect:/usuario/listado";
-//    }
-    /*
-    @GetMapping("/eliminar/{idUsuario}")
-    public String usuarioEliminar(Usuario usuario) {
-        usuarioService.delete(usuario);
-        return "redirect:/usuario/listado";
-    }
-
-    @GetMapping("/modificar/{idUsuario}")
-    public String usuarioModificar(Usuario usuario, Model model) {
-        usuario = usuarioService.getUsuario(usuario);
-        model.addAttribute("usuario", usuario);
-        return "/usuario/modifica";
-    }
-    */
 }

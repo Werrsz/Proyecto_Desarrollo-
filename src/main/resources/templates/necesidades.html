@@ -14,26 +14,27 @@
             <!-- Navbar (optional) -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand">Peticiones/Necesidades</a>
+                    <a class="navbar-brand">Necesidades y Donaciones</a>
                 </div>
             </nav>
 
             <div class="bg-light">
 
                 <div class="container mt-4">
-                    <h2 class="text-center mb-4">Registro de Donaciones</h2>
+                    <h2 class="text-center mb-4" th:if="${nombre != null and correo != null and tipo_acceso}">Registro de Necesidades</h2>
 
                     <!-- Formulario -->
-                    <div class="card p-4 shadow-sm mb-4">
-                        <form id="donationForm">
+                    <div class="card p-4 shadow-sm mb-4" th:if="${nombre != null and correo != null and tipo_acceso}">
+                        <form id="donationForm" action="necesidades/submit" th:object="${necesidad}" method="POST">
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <label class="form-label">Descripción</label>
-                                    <input type="text" class="form-control" id="description" required=""/>
+                                    <input type="text" class="form-control" id="descripcion" name="descripcion" required="true"/>
                                 </div>
+                                
                                 <div class="col-md-3">
                                     <label class="form-label">Tipo</label>
-                                    <select class="form-select" id="type" required="">
+                                    <select class="form-select" id="tipo" name="tipo" required="true">
                                         <option value="">Seleccione...</option>
                                         <option value="Alimento">Alimento</option>
                                         <option value="Medicina">Medicina</option>
@@ -42,10 +43,17 @@
                                         <option value="Otros">Otros</option>
                                     </select>
                                 </div>
-                                <div class="col-md-2">
+                                
+                                <div class="col-md-4">
                                     <label class="form-label">Cantidad</label>
-                                    <input type="number" class="form-control" id="quantity" required="" min="1"/>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" required="true" min="1"/>
                                 </div>
+                                
+                                <div class="col-md-4">
+                                    <label class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" id="fecha" name="fecha" required="true"/>
+                                </div>
+                                
                                 <div class="col-md-3 d-flex align-items-end">
                                     <button type="submit" class="btn btn-primary w-100">Registrar</button>
                                 </div>
@@ -53,108 +61,41 @@
                         </form>
                     </div>
 
-                    <!-- Lista de Donaciones -->
-                    <h3 class="mb-3">Donaciones Registradas</h3>
+                    <!-- Lista de Necesidades -->
+                    <h3 class="mb-3">Necesidades Registradas</h3>
                     <ul class="list-group" id="donationList">
-                        <!-- Dynamic Items will be added here -->
+                        <li class="list-group-item d-flex align-items-center" th:each="necesidad : ${necesidades}"
+                            th:style="'background-color:' + (${!necesidad.activa} ? 'lightgoldenrodyellow': 'lightblue')">
+                            <div class="pet-icon me-3">
+                                <i class="fas fa-paw"></i>
+                            </div>
+                            <div>
+                                <p class="mb-1"><strong>Tipo:</strong> [[${necesidad.tipo}]]</p>
+                                <p class="mb-1"><strong>Descripcion:</strong> [[${necesidad.descripcion}]]</p>
+                                <p class="mb-1"><strong>Cantidad Necesitada:</strong> [[${necesidad.cantidad}]]</p>
+                                <p class="mb-1"><strong>Fecha:</strong> [[${necesidad.fecha}]]</p>
+                                <p class="mb-0" th:if="${necesidad.activa}"><strong>Estado:</strong> Activa</p>
+                                <p class="mb-0" th:if="${!necesidad.activa}"><strong>Estado:</strong> Cerrada</p>
+                            </div>
+                            <!-- Buttons at the right side -->
+                            <div class="action-buttons">
+                                <a th:href="@{/eliminarNecesidad/{id_necesidad}(id_necesidad=${necesidad.id_necesidad})}"  th:if="${nombre != null and correo != null and tipo_acceso}" class="btn btn-sm btn-danger" title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                <a th:href="@{/donar/{id_necesidad}(id_necesidad=${necesidad.id_necesidad})}" th:if="${nombre != null and correo != null and necesidad.activa}" class="btn btn-sm btn-success" title="Donar">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </a>
+                            </div>
+                        </li>
                     </ul>
-                </div>
-
-                <!-- Modal for Donation -->
-                <div class="modal fade" id="donationModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Realizar Donación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="donorForm">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="donorName" required=""/>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Teléfono</label>
-                                        <input type="text" class="form-control" id="donorPhone" required=""/>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Correo Electrónico</label>
-                                        <input type="email" class="form-control" id="donorEmail" required=""/>
-                                    </div>
-                                    <button type="submit" class="btn btn-success w-100">Confirmar Donación</button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="text-center p-2" th:if="${necesidades == null or necesidades.empty}">
+                        <span>No Hay Necesidades</span>
                     </div>
                 </div>
+                
             </div>
         </div>
 
-        <script>
-            document.getElementById("donationForm").addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                let description = document.getElementById("description").value;
-                let type = document.getElementById("type").value;
-                let quantity = document.getElementById("quantity").value;
-                let date = new Date().toLocaleDateString();
-
-                let list = document.getElementById("donationList");
-                let listItem = document.createElement("li");
-                listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
-                listItem.innerHTML = `
-                                    <div>
-                                        <p class="mb-1"><strong>Fecha:</strong> ${date}</p>
-                                        <p class="mb-1"><strong>Descripción:</strong> ${description}</p>
-                                        <p class="mb-1"><strong>Tipo:</strong> ${type}</p>
-                                        <p class="mb-0"><strong>Cantidad:</strong> ${quantity}</p>
-                                    </div>
-                                    <button class="btn btn-warning btn-sm" onclick="openDonationModal()">
-                                        <i class="fas fa-hand-holding-heart"></i> Donar
-                                    </button>
-                                `;
-                list.appendChild(listItem);
-
-                // Reset form
-                document.getElementById("donationForm").reset();
-            });
-
-            function openDonationModal() {
-                let modal = new bootstrap.Modal(document.getElementById("donationModal"));
-                modal.show();
-            }
-
-            document.getElementById("donorForm").addEventListener("submit", function (event) {
-                event.preventDefault();
-                alert("¡Gracias por tu donación!");
-                let modal = bootstrap.Modal.getInstance(document.getElementById("donationModal"));
-                modal.hide();
-                document.getElementById("donorForm").reset();
-            });
-            
-            // Insertar una necesidad default
-            let description = "Se necesita alimento para perros"
-            let type = "Alimento";
-            let quantity = 5;
-            let date = new Date().toLocaleDateString();
-
-            let list = document.getElementById("donationList");
-            let listItem = document.createElement("li");
-            listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
-            listItem.innerHTML = `
-                                    <div>
-                                        <p class="mb-1"><strong>Fecha:</strong> ${date}</p>
-                                        <p class="mb-1"><strong>Descripción:</strong> ${description}</p>
-                                        <p class="mb-1"><strong>Tipo:</strong> ${type}</p>
-                                        <p class="mb-0"><strong>Cantidad:</strong> ${quantity}</p>
-                                    </div>
-                                    <button class="btn btn-warning btn-sm" onclick="openDonationModal()">
-                                        <i class="fas fa-hand-holding-heart"></i> Donar
-                                    </button>
-                                `;
-            list.appendChild(listItem);
-        </script>
     </body>
 </html>
 

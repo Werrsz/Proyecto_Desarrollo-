@@ -6,18 +6,13 @@ import com.proyecto_D.service.CitaService;
 import com.proyecto_D.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-//import com.proyecto_D.service.FirebaseStorageService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 //@RequestMapping("/listaMascotas")
 @Controller
@@ -28,6 +23,11 @@ public class CitaController {
 
     @Autowired
     private UsuarioService usuarioService;
+    
+    @ModelAttribute("usuarioService")
+    public UsuarioService getUsuarioService() {
+        return usuarioService;
+    }
 
     @GetMapping("/misCitas")
     public String misCitasPage(Model model, HttpSession session) {

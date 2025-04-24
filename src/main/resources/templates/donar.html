@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Patitas Solidarias</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+
+        <div class="maincontainer">
+            <div th:replace="~{layout/plantilla :: header}" class="leftside"/>
+            <!-- Navbar (optional) -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand">Formulario de Donacion</a>
+                </div>
+            </nav>
+
+            <div class="bg-light">
+
+                <div class="container mt-4">
+                    <h2 class="text-center mb-4">Necesidad Seleccionada</h2>
+
+                    <ul class="list-group" id="donationList">
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="pet-icon me-3">
+                                <i class="fas fa-paw"></i>
+                            </div>
+                            <div>
+                                <p class="mb-1"><strong>Tipo:</strong> [[${necesidad.tipo}]]</p>
+                                <p class="mb-1"><strong>Descripcion:</strong> [[${necesidad.descripcion}]]</p>
+                                <p class="mb-1"><strong>Cantidad:</strong> [[${necesidad.cantidad}]]</p>
+                                <p class="mb-1"><strong>Fecha:</strong> [[${necesidad.fecha}]]</p>
+                                <p class="mb-0" th:if="${necesidad.activa}"><strong>Estado:</strong> Activa</p>
+                                <p class="mb-0" th:if="${!necesidad.activa}"><strong>Estado:</strong> Cerrada</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="card p-4 shadow-sm mb-4">
+                        <form id="donationForm" action="submit" th:object="${donacion}" method="POST">
+                            <div class="row g-3">
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Cantidad a Donar</label>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" required="true" min="1" th:max="${necesidad.cantidad}"/>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" style="background-color: lightgray;" id="fecha" name="fecha" th:field="*{fecha}" required="true" readonly="true"/>
+                                </div>
+                                
+                                <!-- Hidden inputs -->
+                                <div class="mb-1">
+                                    <input type="hidden" id="id_necesidad" name="id_necesidad" th:field="*{id_necesidad}" />
+                                    <input type="hidden" id="id_usuario" name="id_usuario" th:field="*{id_usuario}" />
+                                </div>
+
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-primary w-100">Donar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>
+

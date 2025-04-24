@@ -13,4 +13,8 @@ public class DonacionService {
     @Autowired
     private DonacionRepository donacionRepository;
     
+    @Transactional
+    public void save(Donacion donacion) {
+        donacionRepository.save(donacion);
+    }
 }

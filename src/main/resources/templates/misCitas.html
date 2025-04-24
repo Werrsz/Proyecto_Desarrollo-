@@ -61,7 +61,8 @@
 
                 <ul class="list-group" th:if="${miscitas != null}">
 
-                    <li class="list-group-item d-flex align-items-center liListaMascotas" th:each="cita : ${miscitas}" >
+                    <li class="list-group-item d-flex align-items-center liListaMascotas" th:each="cita : ${miscitas}" 
+                        th:style="'background-color:' + (${cita.estado} == 'pendiente' ? 'lightblue' : (${cita.estado} == 'completada' ? '#81c784' : 'lightgoldenrodyellow'))">
                         <div class="pet-icon me-3">
                             <i class="fas fa-paw"></i>
                         </div>
@@ -70,8 +71,9 @@
                             <p class="mb-1"><strong>Tipo Servicio:</strong> [[${cita.tipo_servicio}]]</p>
                             <p class="mb-1"><strong>Fecha:</strong> [[${cita.fecha}]]</p>
                             <p class="mb-1"><strong>Estado:</strong> [[${cita.estado}]]</p>
-                            <p class="mb-0"><strong>ID Doctor</strong> [[${cita.id_doctor}]]</p>
-                            <p class="mb-0"><strong>ID Usuario</strong> [[${cita.id_usuario}]]</p>
+                            <p class="mb-0"><strong>Doctor:</strong> [[${usuarioService.getUsuarioByID(cita.id_doctor).getNombre()}]]</p>
+                            <p class="mb-0"><strong>Usuario:</strong> [[${usuarioService.getUsuarioByID(cita.id_usuario).getNombre()}]]</p>
+                            
                         </div>
                         <!-- Buttons at the right side -->
                         <div class="action-buttons">

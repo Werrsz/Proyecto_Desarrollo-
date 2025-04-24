@@ -16,8 +16,42 @@ public class Adopcion implements Serializable {
     @Column(name = "id_adopcion")
     private Long id_adopcion;
     private Long id_mascota;
-    private String descripcion_historia;
     private String fecha_adopcion;
-    private String correo_usuario;
+    private Long id_usuario;
+
+    public Adopcion() {
+    }
     
+    public Long getId_adopcion() {
+        return id_adopcion;
+    }
+
+    public void setId_adopcion(Long id_adopcion) {
+        this.id_adopcion = id_adopcion;
+    }
+
+    public Long getId_mascota() {
+        return id_mascota;
+    }
+
+    public void setId_mascota(Long id_mascota) {
+        this.id_mascota = id_mascota;
+    }
+
+    public String getFecha_adopcion() {
+        return fecha_adopcion;
+    }
+
+    public void setFecha_adopcion(String fecha_adopcion) {
+        this.fecha_adopcion = fecha_adopcion;
+    }
+
+    public Long getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+       
 }

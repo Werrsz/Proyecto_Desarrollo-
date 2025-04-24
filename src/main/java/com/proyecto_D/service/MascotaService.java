@@ -30,8 +30,8 @@ public class MascotaService {
     }
     
     @Transactional(readOnly = true)
-    public Optional<Mascota> getMascotaById(Long id_mascota) {
-        return mascotaRepository.findById(id_mascota);
+    public Mascota getMascotaById(Long id_mascota) {
+        return mascotaRepository.findById(id_mascota).orElse(null);
     }
     
     

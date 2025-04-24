@@ -1,6 +1,7 @@
 package com.proyecto_D.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import lombok.Data;
 
@@ -13,98 +14,55 @@ public class Donacion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Long idUsuario;
-    private String username;
-    private String password;
-    private String nombre;
-    private String apellidos;
-    private String correo;
-    private String telefono;
-    private String rutaImagen;
-    private String Activo;
-//    @OneToMany
-//    @JoinColumn(name="id_usuario")
-//    private List<Rol> roles;
+    @Column(name = "id_donacion")
+    private Long id_donacion;
+    private Long id_necesidad;
+    private String fecha;
+    private Long cantidad;
+    private Long id_usuario;
 
-    public String getActivo() {
-        return Activo;
+    public Donacion() {
     }
 
-    public void setActivo(String Activo) {
-        this.Activo = Activo;
+    public Long getId_necesidad() {
+        return id_necesidad;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public void setId_necesidad(Long id_necesidad) {
+        this.id_necesidad = id_necesidad;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public Long getId_donacion() {
+        return id_donacion;
     }
 
-    public String getUsername() {
-        return username;
+    public void setId_donacion(Long id_donacion) {
+        this.id_donacion = id_donacion;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getFecha() {
+        return fecha;
     }
 
-    public String getPassword() {
-        return password;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Long getCantidad() {
+        return cantidad;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
-
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
-    }
-
-//    public List<Rol> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Rol> roles) {
-//        this.roles = roles;
-//    }
+    
     
 }
