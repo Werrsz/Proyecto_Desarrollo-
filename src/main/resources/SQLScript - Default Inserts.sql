@@ -1,53 +1,45 @@
--- Inserciones para la tabla: usuario
+-- Usuarios
 INSERT INTO usuario (correo, tipo_acceso, nombre, contrasena) VALUES
-('ana.perez@email.com', 1, 'Ana Pérez', 'contrasena123'),
-('mario.rios@email.com', 1, 'Mario Ríos', 'admin456'),
-('lucia.gomez@email.com', 1, 'Lucía Gómez', 'lucia789');
+('ana.gomez@gmail.com', 0, 'Ana Gómez', 'ana123'),
+('admin@patitas.org', 1, 'Administrador', 'admin123'),
+('mario.rios@hotmail.com', 0, 'Mario Ríos', 'mario456');
 
--- Inserciones para la tabla: mascota
+-- Mascotas
 INSERT INTO mascota (nombre, tipo_animal, descripcion, edad, estado, adoptado_por) VALUES
-('Firulais', 'Perro', 'Perro mestizo muy juguetón', 3, 'disponible', 0),
-('Mishi', 'Gato', 'Gata rescatada de la calle', 2, 'en tratamiento', 0),
-('Toby', 'Perro', 'Perrito muy amigable, ideal para niños', 4, 'adoptado', 5);
+('Luna', 'Perro', 'Perra mestiza muy cariñosa', 3, 'disponible', 0),
+('Milo', 'Gato', 'Gatito juguetón y dormilón', 2, 'adoptado', 1),
+('Simba', 'Perro', 'Cachorro rescatado, en recuperación', 1, 'en tratamiento', 0);
 
--- Inserciones para la tabla: adopciones
-INSERT INTO adopciones (id_mascota, descripcion_historia, fecha_adopcion, correo_usuario) VALUES
-(3, 'Toby fue adoptado por una familia amorosa con niños.', '2024-11-12', 'ana.perez@email.com'),
-(2, 'Mishi fue adoptada tras recuperarse de una cirugía.', '2025-01-18', 'lucia.gomez@email.com'),
-(1, 'Firulais encontró un hogar con espacio amplio.', '2025-03-05', 'mario.rios@email.com');
+-- Adopciones
+INSERT INTO adopciones (id_mascota, fecha_adopcion, id_usuario) VALUES
+(2, '2025-04-01', 1);
 
--- Inserciones para la tabla: castraciones
+-- Castraciones
 INSERT INTO castraciones (id_mascota, clinica, precio, fecha) VALUES
-(1, 'Clínica Animal Vida', 15000.00, '2025-02-10'),
-(2, 'Huellas Sanas', 13000.00, '2025-03-15'),
-(3, 'Veterinaria El Arca', 14000.00, '2025-04-01');
+(1, 'Clínica Animal Vida', 30000.00, '2025-03-15'),
+(3, 'Clínica San Pet', 35000.00, '2025-04-10');
 
--- Inserciones para la tabla: citas
-INSERT INTO citas (tipo_servicio, fecha, estado, id_doctor , id_usuario) VALUES
-('Vacunación', '2025-04-10', 'pendiente', 2, 5),
-('Revisión médica', '2025-04-15', 'completada', 2, 1),
-('Desparasitación', '2025-04-20', 'cancelada', 2, 5);
+-- Citas
+INSERT INTO citas (tipo_servicio, fecha, estado, id_doctor, id_usuario) VALUES
+('Vacunación', '2025-04-25', 'pendiente', 101, 1),
+('Consulta general', '2025-04-26', 'confirmada', 102, 3);
 
--- Inserciones para la tabla: necesidades
-INSERT INTO necesidades (descripcion, tipo, cantidad, fecha_solicitud) VALUES
-('Croquetas para perros adultos', 'Alimento', 5, '2025-04-01'),
-('Arena para gatos', 'Higiene', 3, '2025-04-03'),
-('Medicamentos antipulgas', 'Salud', 10, '2025-04-05');
+-- Necesidades
+INSERT INTO necesidades (descripcion, tipo, cantidad, fecha, activa) VALUES
+('Croquetas para perros adultos', 'Alimento', 20, '2025-04-15', 1),
+('Medicamentos post-operatorios', 'Medicinas', 10, '2025-04-18', 1);
 
--- Inserciones para la tabla: donaciones
-INSERT INTO donaciones (fecha, descripcion, tipo, cantidad, correo_donante) VALUES
-('2025-03-20', 'Donación en efectivo para tratamientos', 'Monetaria', 25000.00, 'donante1@email.com'),
-('2025-03-25', 'Sacos de alimento para perros', 'Especie', 4, 'donante2@email.com'),
-('2025-04-01', 'Medicamentos varios', 'Especie', 3, 'donante3@email.com');
+-- Donaciones
+INSERT INTO donaciones (id_necesidad, fecha, cantidad, id_usuario) VALUES
+(1, '2025-04-20', 5000.00, 2),
+(2, '2025-04-21', 7500.00, 3);
 
--- Inserciones para la tabla: voluntariado
+-- Voluntariado
 INSERT INTO voluntariado (correo, nombre, pais, mensaje) VALUES
-('voluntaria1@email.com', 'Sofía Herrera', 'Costa Rica', 'Quiero ayudar en campañas de adopción'),
-('voluntario2@email.com', 'Luis Ramírez', 'Costa Rica', 'Disponible los fines de semana para rescates'),
-('voluntaria3@email.com', 'Mariana Solano', 'Panamá', 'Puedo apoyar con diseño gráfico para redes');
+('valeria.volun@gmail.com', 'Valeria Ruiz', 'Costa Rica', 'Me gustaría ayudar los fines de semana.'),
+('carlos.mendez@outlook.com', 'Carlos Méndez', 'México', 'Tengo experiencia en rescate y cuidados básicos.');
 
--- Inserciones para la tabla: testimonios
+-- Testimonios
 INSERT INTO testimonios (descripcion, correo, fecha) VALUES
-('Adoptar a Toby fue lo mejor que hicimos como familia.', 'ana.perez@email.com', '2025-03-10'),
-('Gracias a Patitas Solidarias, Mishi está sana y feliz.', 'lucia.gomez@email.com', '2025-03-22'),
-('Excelente atención, Firulais fue muy bien recibido.', 'mario.rios@email.com', '2025-04-01');
+('Adoptar a Milo fue la mejor decisión, es parte de la familia.', 'ana.gomez@gmail.com', '2025-04-05'),
+('Gracias a Patitas Solidarias por darme la oportunidad de ayudar.', 'valeria.volun@gmail.com', '2025-04-10');
